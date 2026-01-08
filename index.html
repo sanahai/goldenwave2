@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>인천 남성 반영구 프라이빗 스튜디오 - 4060 남성 전문</title>
+    
+    <!-- SEO 메타태그 - 카톡/문자 공유 시 미리보기 -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="인천 남성 반영구 전문 | 50대 원장의 프라이빗 스튜디오">
+    <meta property="og:description" content="티 안 나는 자연스러움. 중년 남성의 인상을 책임집니다. 100% 예약제.">
+    <meta property="og:image" content="여기에_대표이미지_주소.jpg">
+    <meta property="og:url" content="http://원장님홈페이지주소.com">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect fill="%23232323" width="1200" height="800"/><g opacity="0.3"><circle cx="200" cy="150" r="80" fill="%23444"/><circle cx="900" cy="400" r="120" fill="%23444"/><circle cx="600" cy="600" r="100" fill="%23444"/></g></svg>');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+        
+        .hero-content {
+            max-width: 900px;
+            padding: 20px;
+            animation: fadeInUp 1s ease-out;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.3;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            opacity: 0.95;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 18px 45px;
+            background: linear-gradient(135deg, #c9a961 0%, #b8954a 100%);
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border-radius: 50px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(201, 169, 97, 0.4);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(201, 169, 97, 0.6);
+        }
+        
+        /* Empathy Section */
+        .empathy {
+            background: #1a1a1a;
+            color: white;
+            padding: 50px 20px;
+            text-align: center;
+        }
+        
+        .empathy h2 {
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: #c9a961;
+        }
+        
+        .empathy-questions {
+            max-width: 800px;
+            margin: 0 auto 50px;
+        }
+        
+        .question {
+            font-size: 1.4rem;
+            margin: 25px 0;
+            padding: 20px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 10px;
+            border-left: 4px solid #c9a961;
+        }
+        
+        .solution {
+            font-size: 1.5rem;
+            color: #c9a961;
+            font-weight: 600;
+            margin-top: 40px;
+            padding: 30px;
+            background: rgba(201, 169, 97, 0.1);
+            border-radius: 15px;
+        }
+        
+        /* About Section */
+        .about {
+            padding: 60px 20px;
+            background: #f8f8f8;
+        }
+        
+        .about-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        
+        .about-image {
+            width: 100%;
+            height: 500px;
+            background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #c9a961;
+            font-size: 1.2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .about-text h2 {
+            font-size: 2.2rem;
+            margin-bottom: 30px;
+            color: #2d2d2d;
+        }
+        
+        .about-text p {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 20px;
+        }
+        
+        .credentials {
+            margin-top: 30px;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            border-left: 4px solid #c9a961;
+        }
+        
+        /* Services Section */
+        .services {
+            padding: 60px 20px;
+            background: white;
+        }
+        
+        .services h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+            color: #2d2d2d;
+        }
+        
+        .service-categories {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+        }
+        
+        .service-category {
+            background: #f8f8f8;
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .service-category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+        
+        .category-header {
+            background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .category-icon {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        .category-header h3 {
+            font-size: 2rem;
+            margin-bottom: 5px;
+        }
+        
+        .category-subtitle {
+            font-size: 0.9rem;
+            opacity: 0.7;
+            margin-bottom: 10px;
+        }
+        
+        .category-header p {
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+        
+        .service-list {
+            padding: 30px;
+            flex: 1;
+        }
+        
+        .service-item {
+            padding: 20px;
+            margin: 15px 0;
+            background: white;
+            border-radius: 12px;
+            border-left: 4px solid #c9a961;
+            transition: all 0.3s;
+        }
+        
+        .service-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .service-item-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .service-item-icon {
+            font-size: 1.8rem;
+            color: #c9a961;
+        }
+        
+        .service-item-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #2d2d2d;
+        }
+        
+        .service-item-desc {
+            margin-top: 10px;
+            padding-left: 50px;
+            font-size: 1rem;
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        /* Portfolio Section */
+        .portfolio {
+            padding: 60px 20px;
+            background: #f8f8f8;
+        }
+        
+        .portfolio h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #2d2d2d;
+        }
+        
+        .portfolio-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 60px;
+        }
+        
+        .portfolio-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+        
+        .portfolio-item {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+        
+        .portfolio-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .portfolio-images {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            height: 250px;
+        }
+        
+        .portfolio-before,
+        .portfolio-after {
+            position: relative;
+            background: #e0e0e0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 0.9rem;
+        }
+        
+        .portfolio-before::after,
+        .portfolio-after::after {
+            content: '';
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 5px 15px;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+        
+        .portfolio-before::after {
+            content: 'BEFORE';
+        }
+        
+        .portfolio-after::after {
+            content: 'AFTER';
+            background: #c9a961;
+        }
+        
+        .portfolio-info {
+            padding: 20px;
+        }
+        
+        .portfolio-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2d2d2d;
+            margin-bottom: 10px;
+        }
+        
+        .portfolio-desc {
+            font-size: 0.95rem;
+            color: #666;
+            line-height: 1.5;
+        }
+        
+        /* Global Section */
+        .global {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            padding: 60px 20px;
+            text-align: center;
+            border-top: 3px solid #c9a961;
+            border-bottom: 3px solid #c9a961;
+        }
+        
+        .global h2 {
+            color: #c9a961;
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        
+        .global p {
+            color: white;
+            font-size: 1.2rem;
+            max-width: 900px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+        
+        /* Pricing Section */
+        .pricing {
+            padding: 60px 20px;
+            background: white;
+        }
+        
+        .pricing-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .pricing h2 {
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            text-align: center;
+            color: #2d2d2d;
+        }
+        
+        .pricing-rules {
+            background: #f8f8f8;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .rule-item {
+            padding: 25px;
+            margin: 20px 0;
+            background: white;
+            border-radius: 10px;
+            border-left: 4px solid #c9a961;
+            font-size: 1.15rem;
+        }
+        
+        /* Contact Section */
+        .contact {
+            padding: 60px 20px;
+            background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%);
+        }
+        
+        .contact h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+            color: #c9a961;
+        }
+        
+        .contact-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+        }
+        
+        .contact-info {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        }
+        
+        .info-item {
+            margin: 25px 0;
+            font-size: 1.1rem;
+        }
+        
+        .info-item strong {
+            color: #c9a961;
+            display: block;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .map-placeholder {
+            width: 100%;
+            height: 400px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-size: 1.2rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        }
+        
+        /* Footer */
+        footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        
+        footer p {
+            opacity: 0.7;
+            margin: 10px 0;
+        }
+        
+        footer a {
+            color: #c9a961;
+            text-decoration: none;
+        }
+        
+        /* Floating Buttons */
+        .floating-buttons {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            gap: 15px;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+        }
+        
+        .float-btn {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        
+        .float-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+        }
+        
+        .kakao-btn {
+            background: #FEE500;
+            color: #3c1e1e;
+        }
+        
+        .phone-btn {
+            background: #34c759;
+            color: white;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .about-content,
+            .service-categories,
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .floating-buttons {
+                bottom: 20px;
+                right: 20px;
+            }
+            
+            .float-btn {
+                width: 60px;
+                height: 60px;
+                font-size: 1.7rem;
+            }
+            
+            .question {
+                font-size: 1.2rem;
+            }
+            
+            .solution {
+                font-size: 1.3rem;
+            }
+            
+            .category-icon {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>인천 4060 남자의<br>인상(人相)을 디자인합니다</h1>
+            <p>티 나지 않는 자연스러움.<br>50대 남성 원장이 직접 관리하는 프라이빗 스튜디오.</p>
+            <a href="tel:010-8187-2376" class="cta-button">내 인상 무료 상담받기</a>
+        </div>
+    </section>
+
+    <!-- Empathy Section -->
+    <section class="empathy">
+        <h2>이런 고민, 하고 계셨죠?</h2>
+        <div class="empathy-questions">
+            <div class="question">Q. 미용실이나 뷰티샵, 들어가기 쑥스러우셨죠?</div>
+            <div class="question">Q. "짱구 눈썹" 될까 봐 걱정되셨나요?</div>
+            <div class="question">Q. 젊은 여성 원장님 앞이라 민망하셨나요?</div>
+        </div>
+        <div class="solution">
+            걱정 마십시오.<br>
+            저도 50대 남자입니다.<br>
+            형님, 동생의 마음으로 편안하게 모시겠습니다.
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about">
+        <div class="about-content">
+            <div class="about-image">
+                <img src="images/ceo-procedure-1.png" alt="원장님 시술 모습" style="width: 100%; height: 100%; object-fit: cover; border-radius: 20px;">
+            </div>
+            <div class="about-text">
+                <h2>화려한 미용이 아닌,<br>중후한 멋을 찾아드립니다</h2>
+                <p>안녕하세요. 늦깎이 열정으로 펜을 잡은 원장입니다.</p>
+                <p>거울 속 흐릿해진 제 눈썹을 보며 느꼈던 아쉬움, 제가 직접 해결하고 싶어 시작했습니다.</p>
+                <p>과한 시술은 하지 않습니다. 딱 5년 전, 활기찼던 그 인상으로 되돌려 드리겠습니다.</p>
+                <div class="credentials">
+                    ✓ 철저한 위생 관리<br>
+                    ✓ 1:1 프라이빗 시술<br>
+                    ✓ 자연스러운 결과 추구
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services">
+        <h2>시술 안내</h2>
+        <div class="service-categories">
+            <!-- 눈썹 카테고리 -->
+            <div class="service-category">
+                <div class="category-header">
+                    <span class="category-icon">✏️</span>
+                    <h3>남성 눈썹 시술</h3>
+                    <p class="category-subtitle">Eyebrow Tattoo</p>
+                    <p>자연스러운 남성미를 살려드립니다</p>
+                </div>
+                <div class="service-list">
+                    <div class="service-item">
+                        <div class="service-item-header">
+                            <span class="service-item-icon">✓</span>
+                            <span class="service-item-title">자연 눈썹 (기본)</span>
+                        </div>
+                        <div class="service-item-desc">
+                            원래 내 눈썹처럼 빈 곳만 자연스럽게 채웁니다. 시술 직후 바로 출근 가능합니다.
+                        </div>
+                    </div>
+                    
+                    <div class="service-item">
+                        <div class="service-item-header">
+                            <span class="service-item-icon">✓</span>
+                            <span class="service-item-title">눈썹 리터치</span>
+                        </div>
+                        <div class="service-item-desc">
+                            흐려진 기존 시술을 보강합니다. 2~3년마다 권장드립니다.
+                        </div>
+                    </div>
+                    
+                    <div class="service-item">
+                        <div class="service-item-header">
+                            <span class="service-item-icon">✓</span>
+                            <span class="service-item-title">흉터 커버</span>
+                        </div>
+                        <div class="service-item-desc">
+                            눈썹 부위 흉터나 백반증을 자연스럽게 가려드립니다.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 두피 카테고리 -->
+            <div class="service-category">
+                <div class="category-header">
+                    <span class="category-icon">💈</span>
+                    <h3>두피 밀도 보강</h3>
+                    <p class="category-subtitle">SMP (Scalp Micro Pigmentation)</p>
+                    <p>흑채 뿌린 듯 자연스럽게</p>
+                </div>
+                <div class="service-list">
+                    <div class="service-item">
+                        <div class="service-item-header">
+                            <span class="service-item-icon">✓</span>
+                            <span class="service-item-title">헤어라인 보강</span>
+                        </div>
+                        <div class="service-item-desc">
+                            올라간 이마선을 자연스럽게 내려드립니다. M자 이마에 효과적입니다.
+                        </div>
+                    </div>
+                    
+                    <div class="service-item">
+                        <div class="service-item-header">
+                            <span class="service-item-icon">✓</span>
+                            <span class="service-item-title">정수리 밀도감</span>
+                        </div>
+                        <div class="service-item-desc">
+                            휑한 정수리 두피를 촘촘하게 채워 풍성해 보이게 합니다.
+                        </div>
+                    </div>
+                    
+                    <div class="service-item">
+                        <div class="service-item-header">
+                            <span class="service-item-icon">✓</span>
+                            <span class="service-item-title">M자 탈모 커버</span>
+                        </div>
+                        <div class="service-item-desc">
+                            양 옆 M자 부위를 자연스럽게 채워 젊어 보이게 합니다.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section class="portfolio">
+        <h2>시술 사례</h2>
+        <p class="portfolio-subtitle">실제 시술 결과를 확인하세요 (고객 동의 하 게시)</p>
+        <div class="portfolio-grid">
+            <div class="portfolio-item">
+                <div class="portfolio-images">
+                    <div class="portfolio-before">
+                        <img src="images/50-procedure-1.png" alt="시술 전" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="portfolio-after">
+                        <img src="images/50-procedure-2.png" alt="시술 후" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                </div>
+                <div class="portfolio-info">
+                    <div class="portfolio-title">50대 남성 / 자연 눈썹</div>
+                    <div class="portfolio-desc">시술 직후 촬영. 자연스러운 남성 눈썹 완성. 출근 가능한 수준입니다.</div>
+                </div>
+            </div>
+
+            <div class="portfolio-item">
+                <div class="portfolio-images">
+                    <div class="portfolio-before">
+                        <img src="images/50-procedure-3.png" alt="시술 전" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="portfolio-after">
+                        <img src="images/50-procedure-4.png" alt="시술 후" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                </div>
+                <div class="portfolio-info">
+                    <div class="portfolio-title">50대 남성 / 눈썹 흉터 커버</div>
+                    <div class="portfolio-desc">어릴 적 생긴 눈썹 흉터를 자연스럽게 가렸습니다.</div>
+                </div>
+            </div>
+
+            <div class="portfolio-item">
+                <div class="portfolio-images">
+                    <div class="portfolio-before">
+                        <img src="images/60-procedure-1.png" alt="시술 전" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="portfolio-after">
+                        <img src="images/60-procedure-2.png" alt="시술 후" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                </div>
+                <div class="portfolio-info">
+                    <div class="portfolio-title">60대 남성 / 자연 눈썹</div>
+                    <div class="portfolio-desc">흐릿해진 눈썹을 자연스럽게 채워 5년 전 인상으로 돌아왔습니다.</div>
+                </div>
+            </div>
+
+            <div class="portfolio-item">
+                <div class="portfolio-images">
+                    <div class="portfolio-before">
+                        <img src="images/60-procedure-3.png" alt="시술 전" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="portfolio-after">
+                        <img src="images/60-procedure-4.png" alt="시술 후" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                </div>
+                <div class="portfolio-info">
+                    <div class="portfolio-title">60대 남성 / 자연 눈썹</div>
+                    <div class="portfolio-desc">빈 부분만 자연스럽게 채워 또렷한 인상이 되었습니다.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Global Section -->
+    <section class="global">
+        <h2>🌟 International Clients Welcome</h2>
+        <p>
+            Are you looking for Men's Eyebrow Tattoo in Incheon?<br>
+            <strong>Natural look / English Consultation Available / Fair Price</strong><br>
+            Welcome foreigners! We use clean & safe tools.
+        </p>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing">
+        <h2>투명하고 정직하게 운영합니다</h2>
+        <div class="pricing-content">
+            <div class="pricing-rules">
+                <div class="rule-item">
+                    <strong>100% 예약제</strong><br>
+                    다른 손님과 마주치지 않습니다. 편안한 분위기에서 상담과 시술을 받으실 수 있습니다.
+                </div>
+                <div class="rule-item">
+                    <strong>정찰제 운영</strong><br>
+                    외국인이라고, 남자라고 더 받지 않습니다. 모든 고객에게 동일한 가격으로 진행합니다.
+                </div>
+                <div class="rule-item">
+                    <strong>투명한 가격</strong><br>
+                    사진 보내주시면 정확한 견적 드립니다. 추가 비용 없이 상담 시 안내된 가격으로 진행됩니다.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq" style="padding: 60px 20px; background: #f9f9f9;">
+        <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 50px; color: #2d2d2d;">자주 묻는 질문</h2>
+        <div style="max-width: 800px; margin: 0 auto;">
+            
+            <div style="margin-bottom: 20px; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+                <h3 style="color: #c9a961; margin-bottom: 10px; font-size: 1.2rem;">Q. 정말 아프지 않나요?</h3>
+                <p style="color: #555;">A. 네, 걱정하지 않으셔도 됩니다. 무통증 시술 노하우로 주무시는 분이 계실 정도로 편안하게 진행됩니다.</p>
+            </div>
+
+            <div style="margin-bottom: 20px; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+                <h3 style="color: #c9a961; margin-bottom: 10px; font-size: 1.2rem;">Q. 시술 후 바로 회사 가도 되나요?</h3>
+                <p style="color: #555;">A. 그럼요. '짱구 눈썹'처럼 진하게 하지 않습니다. 시술 직후에도 일상생활이 가능할 만큼 자연스럽습니다.</p>
+            </div>
+
+            <div style="margin-bottom: 20px; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+                <h3 style="color: #c9a961; margin-bottom: 10px; font-size: 1.2rem;">Q. 유지 기간은 얼마나 되나요?</h3>
+                <p style="color: #555;">A. 피부 타입에 따라 다르지만 보통 1년에서 1년 반 정도 유지됩니다. 이후에는 리터치를 통해 관리하시면 됩니다.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact">
+        <h2>오시는 길 & 문의</h2>
+        <div class="contact-content">
+            <div class="contact-info">
+                <div class="info-item">
+                    <strong>📍 위치</strong>
+                    인천광역시 부평구 마장로 412<br>
+                    드림 아이젠 1동 302호<br>
+                    주차 가능 / 대중교통 이용 편리
+                </div>
+                <div class="info-item">
+                    <strong>⏰ 영업시간</strong>
+                    평일: 오전 10시 - 오후 8시<br>
+                    주말: 오전 10시 - 오후 6시<br>
+                    (완전 예약제로 운영됩니다)
+                </div>
+                <div class="info-item">
+                    <strong>📞 상담 문의</strong>
+                    010-8187-2376<br>
+                    <small style="color: #999;">시술 중엔 통화가 어려우니 문자 남겨주시면 연락드립니다.</small>
+                </div>
+            </div>
+            <div class="map-placeholder">
+                <!-- 네이버 지도 -->
+                <iframe src="https://map.naver.com/p/entry/place/1054467893?c=15.00,0,0,0,dh" 
+                        width="100%" 
+                        height="100%" 
+                        frameborder="0" 
+                        style="border:0; border-radius: 15px;" 
+                        allowfullscreen="" 
+                        loading="lazy">
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="background: #1a1a1a; color: #999; padding: 50px 20px; text-align: center; font-size: 0.9rem;">
+        <h3 style="color: white; font-size: 1.2rem; margin-bottom: 20px;">골든웨이브</h3>
+        <p>대표원장: "일결" 이동길 원장 | 사업자등록번호: 326-58-00636</p>
+        <p>주소: 인천광역시 부평구 마장로 412, 드림 아이젠 1동 302호</p>
+        <p>Tel: <a href="tel:010-8187-2376" style="color: #c9a961; text-decoration: none;">010-8187-2376</a></p>
+        <div style="margin-top: 30px; border-top: 1px solid #333; padding-top: 20px;">
+            <p>© 2025 골든웨이브. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Floating Buttons -->
+    <div class="floating-buttons">
+        <a href="https://pf.kakao.com/_lsLgn" target="_blank" class="float-btn kakao-btn" title="카카오톡 상담">
+            💬
+        </a>
+        <a href="tel:010-8187-2376" class="float-btn phone-btn" title="전화 상담">
+            📞
+        </a>
+    </div>
+
+    <!-- 부드러운 스크롤 JavaScript -->
+    <script>
+        // 부드러운 스크롤 기능
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // 플로팅 버튼이 스크롤 내리면 나타나게 하기
+        window.addEventListener('scroll', function() {
+            var floatBtns = document.querySelector('.floating-buttons');
+            if (window.scrollY > 300) {
+                floatBtns.style.opacity = '1';
+                floatBtns.style.visibility = 'visible';
+            } else {
+                floatBtns.style.opacity = '0';
+                floatBtns.style.visibility = 'hidden';
+            }
+        });
+    </script>
+</body>
+</html>
