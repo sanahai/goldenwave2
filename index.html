@@ -7,7 +7,7 @@
     
     <!-- SEO 메타태그 - 카톡/문자 공유 시 미리보기 -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="인천 중년 남성 반영구 전문 | 50대 원장의 프라이빗 스튜디오">
+    <meta property="og:title" content="인천 남성 반영구 전문 | 50대 원장의 프라이빗 스튜디오">
     <meta property="og:description" content="티 안 나는 자연스러움. 중년 남성의 인상을 책임집니다. 100% 예약제.">
     <meta property="og:image" content="여기에_대표이미지_주소.jpg">
     <meta property="og:url" content="http://www.goldenwave.kr">
@@ -27,7 +27,8 @@
         
         /* Hero Section */
         .hero {
-            height: 100vh;
+            height: 70vh;
+            min-height: 500px;
             background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
                         url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect fill="%23232323" width="1200" height="800"/><g opacity="0.3"><circle cx="200" cy="150" r="80" fill="%23444"/><circle cx="900" cy="400" r="120" fill="%23444"/><circle cx="600" cy="600" r="100" fill="%23444"/></g></svg>');
             background-size: cover;
@@ -93,24 +94,24 @@
         .empathy {
             background: #1a1a1a;
             color: white;
-            padding: 50px 20px;
+            padding: 30px 20px;
             text-align: center;
         }
         
         .empathy h2 {
             font-size: 2.5rem;
-            margin-bottom: 50px;
+            margin-bottom: 30px;
             color: #c9a961;
         }
         
         .empathy-questions {
             max-width: 800px;
-            margin: 0 auto 50px;
+            margin: 0 auto 30px;
         }
         
         .question {
             font-size: 1.4rem;
-            margin: 25px 0;
+            margin: 15px 0;
             padding: 20px;
             background: rgba(255,255,255,0.05);
             border-radius: 10px;
@@ -121,7 +122,7 @@
             font-size: 1.5rem;
             color: #c9a961;
             font-weight: 600;
-            margin-top: 40px;
+            margin-top: 25px;
             padding: 30px;
             background: rgba(201, 169, 97, 0.1);
             border-radius: 15px;
@@ -129,7 +130,7 @@
         
         /* About Section */
         .about {
-            padding: 60px 20px;
+            padding: 30px 20px;
             background: #f8f8f8;
         }
         
@@ -178,14 +179,14 @@
         
         /* Services Section */
         .services {
-            padding: 60px 20px;
+            padding: 30px 20px;
             background: white;
         }
         
         .services h2 {
             text-align: center;
             font-size: 2.5rem;
-            margin-bottom: 60px;
+            margin-bottom: 30px;
             color: #2d2d2d;
         }
         
@@ -287,14 +288,14 @@
         
         /* Portfolio Section */
         .portfolio {
-            padding: 60px 20px;
+            padding: 30px 20px;
             background: #f8f8f8;
         }
         
         .portfolio h2 {
             text-align: center;
             font-size: 2.5rem;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
             color: #2d2d2d;
         }
         
@@ -302,7 +303,7 @@
             text-align: center;
             font-size: 1.2rem;
             color: #666;
-            margin-bottom: 60px;
+            margin-bottom: 30px;
         }
         
         .portfolio-grid {
@@ -367,7 +368,7 @@
         /* Global Section */
         .global {
             background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
-            padding: 60px 20px;
+            padding: 35px 20px;
             text-align: center;
             border-top: 3px solid #c9a961;
             border-bottom: 3px solid #c9a961;
@@ -389,7 +390,7 @@
         
         /* Pricing Section */
         .pricing {
-            padding: 60px 20px;
+            padding: 30px 20px;
             background: white;
         }
         
@@ -400,7 +401,7 @@
         
         .pricing h2 {
             font-size: 2.5rem;
-            margin-bottom: 50px;
+            margin-bottom: 30px;
             text-align: center;
             color: #2d2d2d;
         }
@@ -423,14 +424,14 @@
         
         /* Contact Section */
         .contact {
-            padding: 60px 20px;
+            padding: 30px 20px;
             background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%);
         }
         
         .contact h2 {
             text-align: center;
             font-size: 2.5rem;
-            margin-bottom: 60px;
+            margin-bottom: 30px;
             color: #c9a961;
         }
         
@@ -536,12 +537,34 @@
         
         /* Responsive */
         @media (max-width: 768px) {
+            .hero {
+                height: 60vh;
+                min-height: 450px;
+            }
+            
             .hero h1 {
                 font-size: 2rem;
             }
             
             .hero p {
                 font-size: 1.1rem;
+            }
+            
+            .empathy,
+            .about,
+            .services,
+            .portfolio,
+            .pricing,
+            .contact {
+                padding: 25px 20px;
+            }
+            
+            .empathy h2,
+            .services h2,
+            .portfolio h2,
+            .pricing h2,
+            .contact h2 {
+                margin-bottom: 20px;
             }
             
             .about-content,
@@ -583,7 +606,7 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
-            <h1>인천 4060 중년 남자의<br>인상(人相)을 디자인합니다</h1>
+            <h1>인천 4060 남자의<br>인상(人相)을 디자인합니다</h1>
             <p>티 나지 않는 자연스러움.<br>50대 남성 원장이 직접 관리하는 프라이빗 스튜디오.</p>
             <a href="tel:010-8187-2376" class="cta-button">내 인상 무료 상담받기</a>
         </div>
@@ -608,7 +631,7 @@
     <section class="about">
         <div class="about-content">
             <div class="about-image">
-                <img src="images/ceo-procedure-1.jpg" alt="원장님 시술 모습" style="width: 100%; height: 100%; object-fit: cover; border-radius: 20px;">
+                <img src="images/ceo-procedure-1.png" alt="원장님 시술 모습" style="width: 100%; height: 100%; object-fit: cover; border-radius: 20px;">
             </div>
             <div class="about-text">
                 <h2>화려한 미용이 아닌,<br>중후한 멋을 찾아드립니다</h2>
@@ -719,7 +742,7 @@
         <div class="portfolio-grid">
             <div class="portfolio-item">
                 <div class="portfolio-images">
-                    <img src="images/50-procedure-1.jpg">
+                    <img src="images/50-procedure-1.png">
                 </div>
                 <div class="portfolio-info">
                     <div class="portfolio-title">50대 남성 / 자연 눈썹</div>
@@ -729,7 +752,7 @@
 
             <div class="portfolio-item">
                 <div class="portfolio-images">
-                    <img src="images/50-procedure-2.jpg">
+                    <img src="images/50-procedure-2.png">
                 </div>
                 <div class="portfolio-info">
                     <div class="portfolio-title">50대 남성 / 눈썹 흉터 커버</div>
@@ -739,7 +762,7 @@
 
             <div class="portfolio-item">
                 <div class="portfolio-images">
-                    <img src="images/60-procedure-1.jpg">
+                    <img src="images/60-procedure-1.png">
                 </div>
                 <div class="portfolio-info">
                     <div class="portfolio-title">60대 남성 / 자연 눈썹</div>
@@ -749,10 +772,10 @@
 
             <div class="portfolio-item">
                 <div class="portfolio-images">
-                    <img src="images/40-procedure-1.jpg">
+                    <img src="images/60-procedure-2.png">
                 </div>
                 <div class="portfolio-info">
-                    <div class="portfolio-title">40대 남성 / 자연 눈썹</div>
+                    <div class="portfolio-title">60대 남성 / 자연 눈썹</div>
                     <div class="portfolio-desc">빈 부분만 자연스럽게 채워 또렷한 인상이 되었습니다.</div>
                 </div>
             </div>
