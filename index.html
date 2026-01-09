@@ -837,7 +837,7 @@
     </section>
 
     <!-- Contact Section -->
-    <section class="contact">
+<section class="contact">
         <h2>오시는 길 & 문의</h2>
         <div class="contact-content">
             <div class="contact-info">
@@ -859,16 +859,22 @@
                     <small style="color: #999;">시술 중엔 통화가 어려우니 문자 남겨주시면 연락드립니다.</small>
                 </div>
             </div>
-            <div class="map-placeholder">
-                <!-- 네이버 지도 -->
-                <iframe src="https://map.naver.com/p/entry/place/1054467893?c=15.00,0,0,0,dh" 
-                        width="100%" 
-                        height="100%" 
-                        frameborder="0" 
-                        style="border:0; border-radius: 15px;" 
-                        allowfullscreen="" 
-                        loading="lazy">
-                </iframe>
+            
+            <div class="map-placeholder" style="overflow: hidden; background: none;">
+                <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=6xcx2vmmzl"></script>
+                <div id="map" style="width:100%;height:100%;"></div>
+                <script>
+                    var map = new naver.maps.Map('map', {
+                        center: new naver.maps.LatLng(37.5149363, 126.7043162),
+                        zoom: 16 // 4060 고객분들을 위해 조금 더 확대된 16 레벨을 권장합니다 (기존 13)
+                    });
+
+                    // 마커 추가 (위치 표시를 위해 추가해 드렸습니다)
+                    var marker = new naver.maps.Marker({
+                        position: new naver.maps.LatLng(37.5149363, 126.7043162),
+                        map: map
+                    });
+                </script>
             </div>
         </div>
     </section>
