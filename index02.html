@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LUMIÈRE BEAUTY - 프리미엄 뷰티 솔루션</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <style>
+        /* [웹빌더 공통 스타일 설정] */
+        :root {
+            --primary-color: #111;       /* 메인 텍스트 */
+            --accent-color: #d4a373;     /* 포인트 컬러 (베이지 골드) */
+            --bg-color: #fff;            /* 배경색 */
+            --light-bg: #f9f9f9;         /* 연한 배경 */
+            --border-color: #e5e5e5;     /* 테두리 */
+            --font-main: 'Noto Sans KR', sans-serif;
+            --font-serif: 'Playfair Display', serif; /* 영문 포인트 폰트 */
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: var(--font-main); color: var(--primary-color); line-height: 1.6; }
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
+        img { width: 100%; display: block; }
+
+        /* [Layout Helper] */
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .section { padding: 80px 0; }
+        .text-center { text-align: center; }
+
+        /* [1. Header] - 상단 고정 및 투명 효과 */
+        header {
+            position: fixed; top: 0; left: 0; width: 100%;
+            padding: 20px 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(5px);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            z-index: 1000;
+        }
+        .header-inner { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-family: var(--font-serif); font-size: 1.8rem; font-weight: 700; letter-spacing: 1px; }
+        .nav-menu { display: flex; gap: 40px; font-weight: 500; font-size: 0.95rem; }
+        .nav-menu a:hover { color: var(--accent-color); }
+        .header-btn {
+            background: var(--primary-color); color: #fff;
+            padding: 10px 25px; border-radius: 0;
+            font-size: 0.85rem; letter-spacing: 1px;
+        }
+
+        /* [2. Hero Section] - 벤치마킹: 대형 이미지와 간결한 문구 */
+        .hero {
+            height: 90vh;
+            background: url('https://images.unsplash.com/photo-1596462502278-27bfdd403348?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80') no-repeat center/cover;
+            display: flex; align-items: center;
+            position: relative;
+        }
+        .hero::after {
+            content: ''; position: absolute; inset: 0;
+            background: linear-gradient(to right, rgba(0,0,0,0.4), transparent);
+        }
+        .hero-content {
+            position: relative; z-index: 2;
+            color: #fff; max-width: 600px;
+            padding-left: 5%;
+        }
+        .hero-subtitle { font-size: 1.1rem; letter-spacing: 3px; margin-bottom: 20px; opacity: 0.9; }
+        .hero-title {
+            font-family: var(--font-serif); font-size: 4rem;
+            line-height: 1.1; margin-bottom: 40px;
+        }
+        .btn-line {
+            display: inline-block; padding: 15px 40px;
+            border: 1px solid #fff; color: #fff;
+            font-size: 1rem; margin-top: 20px;
+        }
+        .btn-line:hover { background: #fff; color: #000; }
+
+        /* [3. Stats Bar] - 벤치마킹: 숫자 강조 섹션 */
+        .stats-bar {
+            background: var(--primary-color); color: #fff;
+            padding: 40px 0;
+        }
+        .stats-grid { display: flex; justify-content: space-around; text-align: center; }
+        .stat-item h3 { font-family: var(--font-serif); font-size: 2.5rem; color: var(--accent-color); margin-bottom: 5px; }
+        .stat-item p { font-size: 0.9rem; opacity: 0.7; letter-spacing: 1px; }
+
+        /* [4. Quick Grid] - 벤치마킹: 4분할 메뉴 바로가기 */
+        .quick-grid {
+            display: grid; grid-template-columns: repeat(4, 1fr);
+            border-bottom: 1px solid var(--border-color);
+        }
+        .quick-item {
+            padding: 60px 40px;
+            border-right: 1px solid var(--border-color);
+            transition: 0.3s;
+            background: #fff;
+            position: relative;
+            overflow: hidden;
+        }
+        .quick-item:last-child { border-right: none; }
+        .quick-item:hover { background: var(--light-bg); }
+        .quick-eng {
+            font-family: var(--font-serif); color: var(--accent-color);
+            font-size: 0.9rem; letter-spacing: 2px; margin-bottom: 10px; display: block;
+        }
+        .quick-title { font-size: 1.5rem; font-weight: 700; margin-bottom: 20px; }
+        .quick-desc { font-size: 0.95rem; color: #666; margin-bottom: 30px; min-height: 50px; }
+        .arrow-icon { font-size: 1.5rem; float: right; }
+
+        /* [5. Special Section] - 벤치마킹: 텍스트와 이미지 교차 배치 */
+        .special-wrap { display: flex; align-items: stretch; min-height: 600px; }
+        .special-text {
+            flex: 1; padding: 80px;
+            display: flex; flex-direction: column; justify-content: center;
+            background: #fdfbf9;
+        }
+        .special-img {
+            flex: 1;
+            background: url('https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80') center/cover;
+        }
+        .sec-label { color: var(--accent-color); font-weight: 700; margin-bottom: 20px; display: block; }
+        .sec-head { font-size: 2.5rem; margin-bottom: 30px; font-family: var(--font-serif); }
+        .sec-body { color: #555; margin-bottom: 40px; max-width: 450px; }
+
+        /* [6. News List] - 벤치마킹: 심플한 리스트 형태 */
+        .news-list { border-top: 2px solid #000; margin-top: 40px; }
+        .news-item {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 25px 0; border-bottom: 1px solid #eee;
+            cursor: pointer;
+        }
+        .news-item:hover { background: #fafafa; padding-left: 20px; }
+        .news-cat { font-size: 0.8rem; color: var(--accent-color); font-weight: 700; width: 100px; }
+        .news-title { flex: 1; font-weight: 500; font-size: 1.1rem; }
+        .news-date { color: #999; font-size: 0.9rem; }
+
+        /* [7. Footer CTA] - 벤치마킹: 하단 강조 문구 */
+        .footer-cta {
+            background: url('https://images.unsplash.com/photo-1556760544-74068565f05c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80') center/cover;
+            padding: 100px 0; text-align: center; position: relative; color: #fff;
+        }
+        .footer-cta::before { content:''; position: absolute; inset:0; background: rgba(0,0,0,0.5); }
+        .cta-content { position: relative; z-index: 1; }
+        
+        /* Footer */
+        footer { background: #111; color: #888; padding: 60px 0; font-size: 0.9rem; }
+        .footer-info { margin-top: 20px; line-height: 1.8; }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-menu { display: none; }
+            .hero-title { font-size: 2.5rem; }
+            .stats-grid { flex-direction: column; gap: 30px; }
+            .quick-grid { grid-template-columns: 1fr; }
+            .quick-item { border-right: none; border-bottom: 1px solid var(--border-color); padding: 40px 20px; }
+            .special-wrap { flex-direction: column; }
+            .special-img { height: 300px; }
+            .special-text { padding: 40px 20px; }
+            .news-item { flex-direction: column; align-items: flex-start; gap: 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container header-inner">
+            <div class="logo">LUMIÈRE</div>
+            <nav class="nav-menu">
+                <a href="#">BRAND STORY</a>
+                <a href="#">PRODUCTS</a>
+                <a href="#">SPA & CARE</a>
+                <a href="#">COMMUNITY</a>
+            </nav>
+            <a href="#" class="header-btn">상담 예약하기</a>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <p class="hero-subtitle">PREMIUM AESTHETIC SOLUTION</p>
+            <h1 class="hero-title">Discover Your<br>True Elegance</h1>
+            <p style="margin-bottom: 30px; opacity: 0.8;">
+                시간이 흘러도 변하지 않는 가치.<br>
+                당신만의 고유한 아름다움을 찾아드립니다.
+            </p>
+            <a href="#" class="btn-line">브랜드 더 알아보기</a>
+        </div>
+    </section>
+
+    <div class="stats-bar">
+        <div class="container stats-grid">
+            <div class="stat-item">
+                <h3>10+</h3>
+                <p>YEARS OF EXPERIENCE</p>
+            </div>
+            <div class="stat-item">
+                <h3>5,000+</h3>
+                <p>HAPPY CLIENTS</p>
+            </div>
+            <div class="stat-item">
+                <h3>15</h3>
+                <p>EXPERT DESIGNERS</p>
+            </div>
+            <div class="stat-item">
+                <h3>98%</h3>
+                <p>SATISFACTION RATE</p>
+            </div>
+        </div>
+    </div>
+
+    <section>
+        <div class="quick-grid">
+            <div class="quick-item">
+                <span class="quick-eng">BRAND STORY</span>
+                <h3 class="quick-title">브랜드 소개</h3>
+                <p class="quick-desc">자연에서 찾은 원료와 과학적 기술의 조화로 탄생한 루미에르의 철학을 만나보세요.</p>
+                <div class="arrow-icon">→</div>
+            </div>
+            <div class="quick-item">
+                <span class="quick-eng">SKIN CARE</span>
+                <h3 class="quick-title">스킨 케어</h3>
+                <p class="quick-desc">개개인의 피부 타입에 맞춘 1:1 맞춤형 솔루션과 프로그램을 제공합니다.</p>
+                <div class="arrow-icon">→</div>
+            </div>
+            <div class="quick-item">
+                <span class="quick-eng">PRODUCTS</span>
+                <h3 class="quick-title">제품 소개</h3>
+                <p class="quick-desc">홈케어만으로도 에스테틱의 효과를 경험할 수 있는 프리미엄 라인업.</p>
+                <div class="arrow-icon">→</div>
+            </div>
+            <div class="quick-item">
+                <span class="quick-eng">RESERVATION</span>
+                <h3 class="quick-title">예약 문의</h3>
+                <p class="quick-desc">편안한 휴식과 변화를 위한 첫 걸음. 지금 바로 상담을 예약하세요.</p>
+                <div class="arrow-icon">→</div>
+            </div>
+        </div>
+    </section>
+
+    <div class="special-wrap">
+        <div class="special-text">
+            <span class="sec-label">SPECIAL OFFER</span>
+            <h2 class="sec-head">Why Lumière?</h2>
+            <p class="sec-body">
+                우리는 단순히 겉모습만을 관리하지 않습니다.<br>
+                내면의 평온함이 외면의 아름다움으로 이어지는<br>
+                홀리스틱 뷰티(Holistic Beauty)를 지향합니다.
+            </p>
+            <ul style="margin-bottom: 30px; color: #555;">
+                <li style="margin-bottom: 10px;">✓ 100% 유기농 아로마 오일 사용</li>
+                <li style="margin-bottom: 10px;">✓ 프라이빗 1인실 및 커플룸 완비</li>
+                <li style="margin-bottom: 10px;">✓ 전문 테라피스트의 섬세한 케어</li>
+            </ul>
+            <a href="#" style="text-decoration: underline; font-weight: 700;">자세히 보기 →</a>
+        </div>
+        <div class="special-img"></div>
+    </div>
+
+    <section class="section">
+        <div class="container">
+            <h2 class="text-center" style="font-family: var(--font-serif); font-size: 2.5rem; margin-bottom: 10px;">Lumière News</h2>
+            <p class="text-center" style="color:#888; margin-bottom: 40px;">루미에르의 새로운 소식과 뷰티 팁을 확인하세요.</p>
+            
+            <div class="news-list">
+                <div class="news-item">
+                    <span class="news-cat">NOTICE</span>
+                    <span class="news-title">2025년 시즌 그리팅 및 설날 휴무 안내</span>
+                    <span class="news-date">2025.01.10</span>
+                </div>
+                <div class="news-item">
+                    <span class="news-cat">EVENT</span>
+                    <span class="news-title">신규 회원 가입 시 웰컴 키트 증정 이벤트</span>
+                    <span class="news-date">2025.01.05</span>
+                </div>
+                <div class="news-item">
+                    <span class="news-cat">BEAUTY TIP</span>
+                    <span class="news-title">겨울철 건조한 피부를 위한 홈케어 루틴 3가지</span>
+                    <span class="news-date">2024.12.28</span>
+                </div>
+                <div class="news-item">
+                    <span class="news-cat">MEDIA</span>
+                    <span class="news-title">루미에르, '2024 프리미엄 뷰티 브랜드 대상' 수상</span>
+                    <span class="news-date">2024.12.15</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="footer-cta">
+        <div class="cta-content">
+            <h2 style="font-family: var(--font-serif); font-size: 3rem; margin-bottom: 20px;">Begin Your Journey</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 40px;">망설이지 마세요. 아름다움은 지금부터 시작됩니다.</p>
+            <a href="#" class="header-btn" style="background: #fff; color: #000; padding: 15px 50px;">무료 상담 신청하기</a>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div style="font-size: 1.5rem; font-family: var(--font-serif); margin-bottom: 20px; color: #fff;">LUMIÈRE</div>
+            <div class="footer-info">
+                상호명: 루미에르 뷰티 | 대표자: 홍길동 | 사업자등록번호: 123-45-67890<br>
+                주소: 서울특별시 강남구 뷰티로 123, 루미에르 빌딩 3층<br>
+                Tel: 02-1234-5678 | Email: contact@lumiere.com
+            </div>
+            <p style="margin-top: 30px; opacity: 0.5;">© 2025 LUMIÈRE BEAUTY. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
