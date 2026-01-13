@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MUSE BUILDER - 뷰티 전문 웹빌더</title>
+    
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css" />
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+
+    <style>
+        /* [1. Color System : 뷰티/보라 테마] */
+        :root {
+            /* 배경: 깊은 보라색 (검정 아님) */
+            --bg-color: #120c1f; 
+            
+            /* 카드 배경: 조금 더 밝은 보라 */
+            --card-bg: #1c142e;
+            
+            /* 텍스트 */
+            --text-main: #ffffff;
+            --text-sub: #bbaacc; /* 은은한 라벤더 그레이 */
+            
+            /* 포인트: 쨍한 라벤더 + 핑크 */
+            --accent: #bc6aff; 
+            --accent-grad: linear-gradient(90deg, #bc6aff 0%, #ff6bad 100%);
+            
+            /* 테두리: 투명도 있는 보라 */
+            --border: rgba(188, 106, 255, 0.2);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Pretendard', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
+        img { width: 100%; display: block; }
+        
+        /* 레이아웃 */
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .section { padding: 120px 0; border-bottom: 1px solid var(--border); }
+        
+        /* 타이포그래피 */
+        .sec-head { margin-bottom: 60px; }
+        .sec-sub { color: var(--accent); font-weight: 700; letter-spacing: 2px; margin-bottom: 15px; display: block; font-size: 0.9rem; text-transform: uppercase; }
+        .sec-title { font-size: 3rem; font-weight: 800; line-height: 1.2; }
+        .sec-desc { color: var(--text-sub); margin-top: 20px; font-size: 1.1rem; max-width: 600px; }
+
+        /* [2. Header] */
+        header {
+            position: fixed; top: 0; left: 0; width: 100%; height: 80px;
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 0 40px; 
+            background: rgba(18, 12, 31, 0.85); /* 보라빛 투명 배경 */
+            backdrop-filter: blur(15px);
+            z-index: 1000; border-bottom: 1px solid var(--border);
+        }
+        .logo { font-size: 1.5rem; font-weight: 900; letter-spacing: 1px; }
+        .logo span { color: var(--accent); }
+        .nav { display: flex; gap: 40px; font-weight: 500; }
+        .nav a:hover { color: var(--accent); text-shadow: 0 0 10px rgba(188, 106, 255, 0.5); }
+        
+        .btn-head { 
+            background: transparent; border: 1px solid var(--accent); color: var(--accent);
+            padding: 10px 25px; border-radius: 50px; font-size: 0.9rem; font-weight: 600;
+        }
+        .btn-head:hover { 
+            background: var(--accent); color: #fff; box-shadow: 0 0 20px rgba(188, 106, 255, 0.4); 
+        }
+
+        /* [3. Hero Section] */
+        .hero {
+            height: 100vh; display: flex; align-items: center; justify-content: center;
+            text-align: center; position: relative; padding-top: 80px;
+            /* 배경에 은은한 오로라 효과 */
+            background: radial-gradient(circle at 50% 50%, rgba(188, 106, 255, 0.15) 0%, transparent 60%);
+        }
+        .hero h1 { font-size: 5rem; font-weight: 800; line-height: 1.1; margin-bottom: 30px; letter-spacing: -2px; }
+        
+        /* 뷰티 느낌을 위해 그라데이션 텍스트 적용 */
+        .hero h1 span { 
+            background: var(--accent-grad);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .hero p { color: var(--text-sub); font-size: 1.2rem; margin-bottom: 50px; }
+        
+        .scroll-down { 
+            position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); 
+            animation: bounce 2s infinite; color: var(--accent);
+        }
+        @keyframes bounce { 0%, 20%, 50%, 80%, 100% {transform: translateX(-50%) translateY(0);} 40% {transform: translateX(-50%) translateY(-10px);} 60% {transform: translateX(-50%) translateY(-5px);} }
+
+        /* [4. Marquee - 그라데이션 적용] */
+        .marquee-wrap { 
+            background: var(--accent-grad); 
+            padding: 20px 0; overflow: hidden; white-space: nowrap; 
+            transform: rotate(-2deg); margin: 50px 0; 
+            box-shadow: 0 10px 30px rgba(188, 106, 255, 0.3);
+        }
+        .marquee-txt { display: inline-block; font-size: 1.5rem; color: #fff; font-weight: 800; animation: marquee 20s linear infinite; }
+        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+        /* [5. Intro] */
+        .intro-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+        .intro-img { height: 500px; background: #2a1f40; border-radius: 20px; overflow: hidden; border: 1px solid var(--border); }
+        .intro-img img { height: 100%; object-fit: cover; opacity: 0.8; mix-blend-mode: lighten; }
+
+        /* [6. Services] */
+        .svc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        .svc-card { 
+            background: var(--card-bg); padding: 40px; border-radius: 15px; 
+            border: 1px solid var(--border); transition: 0.3s; 
+        }
+        .svc-card:hover { transform: translateY(-10px); border-color: var(--accent); box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+        .svc-icon { font-size: 2.5rem; color: var(--accent); margin-bottom: 20px; }
+        .svc-card h3 { font-size: 1.5rem; margin-bottom: 15px; }
+        .svc-card p { color: var(--text-sub); }
+
+        /* [7. Portfolio] */
+        .pf-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; }
+        .pf-item { position: relative; group: cursor-pointer; }
+        .pf-thumb { height: 400px; background: #2a1f40; border-radius: 15px; overflow: hidden; margin-bottom: 20px; border: 1px solid var(--border); }
+        .pf-thumb img { height: 100%; object-fit: cover; transition: 0.5s; opacity: 0.9; }
+        .pf-item:hover .pf-thumb img { transform: scale(1.1); opacity: 1; }
+        .pf-info h3 { font-size: 1.8rem; font-weight: 700; }
+        .pf-info span { color: var(--accent); font-weight: 600; }
+
+        /* [8. Review] */
+        .review-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        .review-card {
+            background: var(--card-bg); padding: 40px; border-radius: 15px;
+            border: 1px solid var(--border); position: relative;
+        }
+        .stars { color: var(--accent); margin-bottom: 15px; font-size: 1.2rem; }
+        .review-text { font-size: 1.05rem; line-height: 1.7; margin-bottom: 25px; color: #ddd; }
+        .reviewer { display: flex; align-items: center; gap: 15px; border-top: 1px solid var(--border); padding-top: 20px; }
+        .reviewer-img { width: 50px; height: 50px; border-radius: 50%; background: #444; overflow: hidden; }
+        
+        /* [9. Process] */
+        .process-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; text-align: center; }
+        .step-item { position: relative; }
+        .step-num { 
+            width: 60px; height: 60px; 
+            background: transparent; border: 2px solid var(--accent); color: var(--accent); 
+            border-radius: 50%; display: flex; align-items: center; justify-content: center; 
+            font-size: 1.5rem; font-weight: 800; margin: 0 auto 20px;
+            box-shadow: 0 0 15px rgba(188, 106, 255, 0.2);
+        }
+        .step-item:not(:last-child)::after {
+            content: ''; position: absolute; top: 30px; right: -50%; width: 100%; height: 2px; 
+            background: linear-gradient(90deg, var(--accent), transparent); z-index: -1; opacity: 0.3;
+        }
+
+        /* [10. FAQ] */
+        .faq-item { border-bottom: 1px solid var(--border); }
+        .faq-q { padding: 30px 0; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-size: 1.2rem; font-weight: 600; }
+        .faq-a { max-height: 0; overflow: hidden; transition: 0.3s; color: var(--text-sub); line-height: 1.6; }
+        .faq-item.active .faq-a { max-height: 200px; padding-bottom: 30px; }
+        .faq-icon { transition: 0.3s; color: var(--accent); }
+        .faq-item.active .faq-icon { transform: rotate(45deg); }
+
+        /* [11. Footer] */
+        .footer-cta { text-align: center; padding: 100px 0; background: linear-gradient(to bottom, var(--bg-color), #240046); }
+        footer { padding: 60px 40px; border-top: 1px solid var(--border); font-size: 0.9rem; color: var(--text-sub); display: flex; justify-content: space-between; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 3rem; }
+            .intro-grid, .svc-grid, .pf-grid, .review-grid, .process-grid { grid-template-columns: 1fr; }
+            .nav { display: none; }
+            .step-item:not(:last-child)::after { display: none; }
+            header { padding: 0 20px; }
+            .section { padding: 80px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">MUSE<span>BUILDER</span></div>
+        <nav class="nav">
+            <a href="#about">Brand Story</a>
+            <a href="#service">Services</a>
+            <a href="#portfolio">Works</a>
+            <a href="#review">Reviews</a>
+            <a href="#faq">FAQ</a>
+        </nav>
+        <a href="#contact" class="btn-head">Consulting</a>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <span style="color:var(--accent); font-weight:700; letter-spacing:3px; margin-bottom:20px; display:block;">BEAUTY & AESTHETIC WEB</span>
+            <h1>
+                BEAUTY<br>
+                DESIGN <span>STUDIO</span>
+            </h1>
+            <p>
+                당신의 뷰티 브랜드에 우아함과 트렌드를 입히세요.<br>
+                에스테틱, 뷰티샵, 코스메틱 전문 웹빌더 서비스.
+            </p>
+            <a href="#contact" class="btn-head" style="padding: 15px 40px; font-size: 1rem; background: var(--accent-grad); color:white; border:none;">무료 견적 받기</a>
+        </div>
+        <div class="scroll-down">
+            <i class="ri-arrow-down-line" style="font-size: 2rem;"></i>
+        </div>
+    </section>
+
+    <div class="marquee-wrap">
+        <div class="marquee-txt">
+            MUSE BUILDER • BEAUTY WEB DESIGN • AESTHETIC • COSMETIC • HAIR SALON • NAIL ART • MUSE BUILDER • ELEGANT DESIGN • TRENDY STYLE •
+        </div>
+    </div>
+
+    <section class="section" id="about">
+        <div class="container">
+            <div class="intro-grid">
+                <div>
+                    <span class="sec-sub">Who We Are</span>
+                    <h2 class="sec-title">뷰티를 가장 잘 아는<br>디자이너가 만듭니다.</h2>
+                    <p class="sec-desc">
+                        뷰티 웹사이트는 달라야 합니다. 단순히 정보를 나열하는 것이 아니라, 브랜드의 '결'과 '톤'을 시각적으로 보여줘야 합니다.<br>
+                        우리는 뷰티 업계 1위 템플릿 제작 노하우를 보유하고 있습니다.
+                    </p>
+                    <ul style="margin-top: 30px; color: var(--text-sub);">
+                        <li style="margin-bottom: 10px;">✓ 뷰티/미용 전문 포토그래퍼 이미지 제공</li>
+                        <li style="margin-bottom: 10px;">✓ 인스타그램 연동형 갤러리 디자인</li>
+                        <li>✓ 예약 시스템(네이버예약 등) 완벽 연동</li>
+                    </ul>
+                </div>
+                <div class="intro-img">
+                    <img src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Beauty Model">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="service">
+        <div class="container">
+            <div class="sec-head">
+                <span class="sec-sub">Our Services</span>
+                <h2 class="sec-title">뷰티 맞춤 솔루션</h2>
+            </div>
+            <div class="svc-grid">
+                <div class="svc-card">
+                    <i class="ri-brush-line svc-icon"></i>
+                    <h3>Brand Design</h3>
+                    <p>로고부터 웹사이트 컬러 팔레트까지, 당신의 샵에 맞는 무드(Mood)를 디자인해 드립니다.</p>
+                </div>
+                <div class="svc-card">
+                    <i class="ri-calendar-check-line svc-icon"></i>
+                    <h3>Booking System</h3>
+                    <p>고객이 편리하게 시술을 예약할 수 있도록 네이버 예약 및 카카오톡 채널을 연동해 드립니다.</p>
+                </div>
+                <div class="svc-card">
+                    <i class="ri-instagram-line svc-icon"></i>
+                    <h3>SNS Integration</h3>
+                    <p>인스타그램 피드가 홈페이지에 자동으로 업데이트되어 최신 시술 사진을 보여줄 수 있습니다.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="portfolio">
+        <div class="container">
+            <div class="sec-head" style="display:flex; justify-content:space-between; align-items:flex-end;">
+                <div>
+                    <span class="sec-sub">Portfolio</span>
+                    <h2 class="sec-title">제작 사례</h2>
+                </div>
+                <a href="#" style="border-bottom: 1px solid var(--accent); color:var(--accent);">View All Works →</a>
+            </div>
+            <div class="pf-grid">
+                <div class="pf-item">
+                    <div class="pf-thumb">
+                        <img src="https://images.unsplash.com/photo-1560750588-73207b1ef5b8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Cosmetic">
+                    </div>
+                    <div class="pf-info">
+                        <h3>Lumiere Aesthetic</h3>
+                        <span>Premium Skincare Shop</span>
+                    </div>
+                </div>
+                <div class="pf-item">
+                    <div class="pf-thumb">
+                        <img src="https://images.unsplash.com/photo-1522337660859-02fbefca4702?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Makeup">
+                    </div>
+                    <div class="pf-info">
+                        <h3>Muse Makeup</h3>
+                        <span>Wedding & Daily Makeup</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="sec-head" style="text-align: center;">
+                <span class="sec-sub">Process</span>
+                <h2 class="sec-title">제작 프로세스</h2>
+            </div>
+            <div class="process-grid">
+                <div class="step-item">
+                    <div class="step-num">1</div>
+                    <h3>상담 및 기획</h3>
+                    <p style="margin-top:10px; color:var(--text-sub);">브랜드 컨셉과<br>원하는 컬러를 정합니다.</p>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">2</div>
+                    <h3>디자인 시안</h3>
+                    <p style="margin-top:10px; color:var(--text-sub);">뮤즈빌더만의 감성으로<br>시안을 제작합니다.</p>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">3</div>
+                    <h3>개발 및 세팅</h3>
+                    <p style="margin-top:10px; color:var(--text-sub);">PC와 모바일에 맞춰<br>반응형으로 개발합니다.</p>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">4</div>
+                    <h3>최종 오픈</h3>
+                    <p style="margin-top:10px; color:var(--text-sub);">도메인 연결 후<br>사이트를 오픈합니다.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="review">
+        <div class="container">
+            <div class="sec-head">
+                <span class="sec-sub">Testimonials</span>
+                <h2 class="sec-title">고객 후기</h2>
+            </div>
+            <div class="review-grid">
+                <div class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="review-text">"원장님들이 왜 여기서 하는지 알겠어요. 보라색 톤으로 해달라고 했는데 너무 고급스럽게 잘 나왔습니다."</p>
+                    <div class="reviewer">
+                        <div class="reviewer-img">
+                            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="User">
+                        </div>
+                        <div class="reviewer-info">
+                            <strong>김지아 원장</strong>
+                            <span>청담 에스테틱</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="review-text">"쇼핑몰 기능이 필요했는데 깔끔하게 붙여주셨어요. 디자인이 예뻐서 그런지 체류 시간이 늘었습니다."</p>
+                    <div class="reviewer">
+                        <div class="reviewer-img">
+                            <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="User">
+                        </div>
+                        <div class="reviewer-info">
+                            <strong>이수진 대표</strong>
+                            <span>오가닉 뷰티 브랜드</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="review-text">"사진만 보냈는데 알아서 감성적으로 배치해주셨어요. 모바일에서 볼 때 더 예쁩니다."</p>
+                    <div class="reviewer">
+                        <div class="reviewer-img">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="User">
+                        </div>
+                        <div class="reviewer-info">
+                            <strong>박현우 실장</strong>
+                            <span>헤어 스튜디오</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="faq">
+        <div class="container" style="max-width: 800px;">
+            <div class="sec-head" style="text-align: center;">
+                <span class="sec-sub">Q&A</span>
+                <h2 class="sec-title">자주 묻는 질문</h2>
+            </div>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-q">
+                        디자인 수정은 몇 회 가능한가요?
+                        <i class="ri-add-line faq-icon"></i>
+                    </div>
+                    <div class="faq-a">
+                        기본적으로 시안 확정 전까지 2회 수정이 가능하며, 간단한 텍스트나 이미지 교체는 오픈 전까지 무제한으로 도와드립니다.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q">
+                        이미지나 로고가 없어도 되나요?
+                        <i class="ri-add-line faq-icon"></i>
+                    </div>
+                    <div class="faq-a">
+                        네, 가능합니다. 뷰티 업종에 맞는 고화질 유료 이미지를 저희가 보유하고 있어 대체하여 제작해 드립니다.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="footer-cta" id="contact">
+        <div class="container">
+            <h2>Start Your Brand</h2>
+            <p style="color:var(--text-sub); margin-bottom: 40px; font-size: 1.2rem;">아름다운 브랜드의 시작, 뮤즈빌더와 함께하세요.</p>
+            <a href="#" class="btn-head" style="background: var(--accent-grad); color:white; padding: 20px 60px; font-size: 1.2rem; border:none;">무료 상담 신청</a>
+        </div>
+    </div>
+
+    <footer>
+        <div class="f-info">
+            <h3 style="color:white; font-size:1.5rem; margin-bottom:15px;">MUSE BUILDER</h3>
+            <p>상호: 뮤즈빌더 | 대표: 김뮤즈 | 사업자등록번호: 000-00-00000</p>
+            <p>주소: 서울특별시 강남구 도산대로 123 | 이메일: contact@muse.com</p>
+        </div>
+        <div class="f-copy" style="align-self: flex-end;">
+            © 2026 MUSE BUILDER. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+        document.querySelectorAll('.faq-q').forEach(item => {
+            item.addEventListener('click', () => {
+                const parent = item.parentElement;
+                parent.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>
