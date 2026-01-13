@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WEBUILDER - Agency Template</title>
+    
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css" />
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+
+    <style>
+        /* [1. Reset & Variables] */
+        :root {
+            --bg-color: #111111;
+            --card-bg: #1a1a1a;
+            --text-main: #ffffff;
+            --text-sub: #888888;
+            --accent: #ff4d00; /* 포인트 컬러 */
+            --border: #333333;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Pretendard', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
+        img { width: 100%; display: block; }
+        
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .section { padding: 120px 0; border-bottom: 1px solid var(--border); }
+        
+        /* 타이포그래피 */
+        .sec-head { margin-bottom: 60px; }
+        .sec-sub { color: var(--accent); font-weight: 700; letter-spacing: 2px; margin-bottom: 15px; display: block; font-size: 0.9rem; }
+        .sec-title { font-size: 3rem; font-weight: 800; line-height: 1.2; }
+        .sec-desc { color: var(--text-sub); margin-top: 20px; font-size: 1.1rem; max-width: 600px; }
+
+        /* [2. Header] */
+        header {
+            position: fixed; top: 0; left: 0; width: 100%; height: 80px;
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 0 40px; background: rgba(17,17,17,0.8); backdrop-filter: blur(10px);
+            z-index: 1000; border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .logo { font-size: 1.5rem; font-weight: 900; }
+        .nav { display: flex; gap: 40px; font-weight: 500; }
+        .nav a:hover { color: var(--accent); }
+        .btn-head { border: 1px solid #fff; padding: 10px 25px; border-radius: 50px; font-size: 0.9rem; }
+        .btn-head:hover { background: var(--accent); border-color: var(--accent); }
+
+        /* [3. Hero Section] */
+        .hero {
+            height: 100vh; display: flex; align-items: center; justify-content: center;
+            text-align: center; position: relative; padding-top: 80px;
+        }
+        .hero h1 { font-size: 5rem; font-weight: 900; line-height: 1.1; margin-bottom: 30px; letter-spacing: -2px; }
+        .hero h1 span { color: var(--accent); }
+        .hero p { color: var(--text-sub); font-size: 1.2rem; margin-bottom: 50px; }
+        .scroll-down { position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); animation: bounce 2s infinite; }
+        @keyframes bounce { 0%, 20%, 50%, 80%, 100% {transform: translateX(-50%) translateY(0);} 40% {transform: translateX(-50%) translateY(-10px);} 60% {transform: translateX(-50%) translateY(-5px);} }
+
+        /* [4. Marquee] */
+        .marquee-wrap { background: var(--accent); color: #000; padding: 20px 0; overflow: hidden; white-space: nowrap; transform: rotate(-2deg); margin: 50px 0; }
+        .marquee-txt { display: inline-block; font-size: 1.5rem; font-weight: 800; animation: marquee 20s linear infinite; }
+        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+        /* [5. Intro (Text + Image)] */
+        .intro-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+        .intro-img { height: 500px; background: #333; border-radius: 20px; overflow: hidden; }
+        .intro-img img { height: 100%; object-fit: cover; }
+
+        /* [6. Services (Grid)] */
+        .svc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        .svc-card { background: var(--card-bg); padding: 40px; border-radius: 15px; border: 1px solid var(--border); transition: 0.3s; }
+        .svc-card:hover { transform: translateY(-10px); border-color: var(--accent); }
+        .svc-icon { font-size: 2.5rem; color: var(--accent); margin-bottom: 20px; }
+        .svc-card h3 { font-size: 1.5rem; margin-bottom: 15px; }
+
+        /* [7. Portfolio (Gallery)] */
+        .pf-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; }
+        .pf-item { position: relative; group: cursor-pointer; }
+        .pf-thumb { height: 400px; background: #222; border-radius: 15px; overflow: hidden; margin-bottom: 20px; }
+        .pf-thumb img { height: 100%; object-fit: cover; transition: 0.5s; opacity: 0.8; }
+        .pf-item:hover .pf-thumb img { transform: scale(1.1); opacity: 1; }
+        .pf-info h3 { font-size: 1.8rem; font-weight: 700; }
+        .pf-info span { color: var(--accent); font-weight: 600; }
+
+        /* [8. Reviews (Slider style Grid)] - ★ 요청하신 후기 부분 */
+        .review-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        .review-card {
+            background: var(--card-bg); padding: 40px; border-radius: 15px;
+            border: 1px solid var(--border); position: relative;
+        }
+        .stars { color: #ffd700; margin-bottom: 15px; font-size: 1.2rem; }
+        .review-text { font-size: 1.05rem; line-height: 1.7; margin-bottom: 25px; color: #ddd; }
+        .reviewer { display: flex; align-items: center; gap: 15px; border-top: 1px solid var(--border); padding-top: 20px; }
+        .reviewer-img { width: 50px; height: 50px; border-radius: 50%; background: #555; overflow: hidden; }
+        .reviewer-info strong { display: block; font-size: 1rem; }
+        .reviewer-info span { font-size: 0.8rem; color: var(--text-sub); }
+
+        /* [9. Process (Steps)] */
+        .process-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; text-align: center; }
+        .step-item { position: relative; }
+        .step-num { 
+            width: 60px; height: 60px; background: var(--accent); color: #fff; 
+            border-radius: 50%; display: flex; align-items: center; justify-content: center; 
+            font-size: 1.5rem; font-weight: 800; margin: 0 auto 20px;
+        }
+        /* 화살표 라인 (데스크탑) */
+        .step-item:not(:last-child)::after {
+            content: ''; position: absolute; top: 30px; right: -50%; width: 100%; height: 2px; background: #333; z-index: -1;
+        }
+
+        /* [10. FAQ (Accordion)] */
+        .faq-item { border-bottom: 1px solid var(--border); }
+        .faq-q { 
+            padding: 30px 0; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-size: 1.2rem; font-weight: 600; 
+        }
+        .faq-a { max-height: 0; overflow: hidden; transition: 0.3s; color: var(--text-sub); line-height: 1.6; }
+        .faq-item.active .faq-a { max-height: 200px; padding-bottom: 30px; }
+        .faq-icon { transition: 0.3s; }
+        .faq-item.active .faq-icon { transform: rotate(45deg); color: var(--accent); }
+
+        /* [11. Footer] */
+        .footer-cta { text-align: center; padding: 100px 0; background: #000; }
+        .footer-cta h2 { font-size: 3rem; margin-bottom: 30px; }
+        footer { padding: 60px 40px; border-top: 1px solid var(--border); font-size: 0.9rem; color: #666; display: flex; justify-content: space-between; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 3rem; }
+            .intro-grid, .svc-grid, .pf-grid, .review-grid, .process-grid { grid-template-columns: 1fr; }
+            .nav { display: none; }
+            .step-item:not(:last-child)::after { display: none; }
+            header { padding: 0 20px; }
+            .section { padding: 80px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">WE<span>BUILDER</span></div>
+        <nav class="nav">
+            <a href="#about">About</a>
+            <a href="#service">Service</a>
+            <a href="#portfolio">Portfolio</a>
+            <a href="#review">Review</a>
+            <a href="#faq">FAQ</a>
+        </nav>
+        <a href="#" class="btn-head">Consulting</a>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <span style="color:var(--accent); font-weight:700; letter-spacing:3px; margin-bottom:20px; display:block;">WEB AGENCY TEMPLATE</span>
+            <h1>
+                PREMIUM QUALITY<br>
+                REASONABLE <span>PRICE</span>
+            </h1>
+            <p>
+                수백만 원대 홈페이지 퀄리티를 1/10 가격으로.<br>
+                당신의 비즈니스를 위한 가장 합리적인 선택입니다.
+            </p>
+            <a href="#contact" class="btn-head" style="padding: 15px 40px; font-size: 1rem; background: #fff; color:#000; border:none;">지금 시작하기</a>
+        </div>
+        <div class="scroll-down">
+            <i class="ri-arrow-down-line" style="font-size: 2rem; color: #fff;"></i>
+        </div>
+    </section>
+
+    <div class="marquee-wrap">
+        <div class="marquee-txt">
+            WEBUILDER • HIGH QUALITY • FAST DELIVERY • RESPONSIVE DESIGN • SEO OPTIMIZED • 24/7 SUPPORT • WEBUILDER • HIGH QUALITY • FAST DELIVERY • RESPONSIVE DESIGN •
+        </div>
+    </div>
+
+    <section class="section" id="about">
+        <div class="container">
+            <div class="intro-grid">
+                <div>
+                    <span class="sec-sub">WHO WE ARE</span>
+                    <h2 class="sec-title">우리는 홈페이지 제작의<br>새로운 기준입니다.</h2>
+                    <p class="sec-desc">
+                        기존 에이전시의 거품 낀 가격과 느린 소통에 지치셨나요?<br>
+                        우리는 자체 개발한 모듈형 빌더 시스템을 통해<br>
+                        제작 기간은 줄이고 퀄리티는 극대화했습니다.
+                    </p>
+                    <ul style="margin-top: 30px; color: #ddd;">
+                        <li style="margin-bottom: 10px;">✓ 자체 개발 디자인 템플릿 보유</li>
+                        <li style="margin-bottom: 10px;">✓ 100% 반응형 웹 디자인</li>
+                        <li>✓ 검색엔진 최적화 (SEO) 기본 적용</li>
+                    </ul>
+                </div>
+                <div class="intro-img">
+                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Team meeting">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="service">
+        <div class="container">
+            <div class="sec-head">
+                <span class="sec-sub">OUR SERVICES</span>
+                <h2 class="sec-title">무엇을 도와드릴까요?</h2>
+            </div>
+            <div class="svc-grid">
+                <div class="svc-card">
+                    <i class="ri-computer-line svc-icon"></i>
+                    <h3>Web Design</h3>
+                    <p style="color:#888;">최신 트렌드를 반영한 UX/UI 디자인으로 사용자의 시선을 사로잡는 웹사이트를 제작합니다.</p>
+                </div>
+                <div class="svc-card">
+                    <i class="ri-shopping-cart-2-line svc-icon"></i>
+                    <h3>E-Commerce</h3>
+                    <p style="color:#888;">매출 상승을 위한 결제 시스템 연동부터 상품 관리까지, 완벽한 쇼핑몰을 구축합니다.</p>
+                </div>
+                <div class="svc-card">
+                    <i class="ri-smartphone-line svc-icon"></i>
+                    <h3>Responsive</h3>
+                    <p style="color:#888;">PC, 태블릿, 모바일 등 어떤 디바이스에서도 완벽하게 보이는 반응형 웹을 제공합니다.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="portfolio">
+        <div class="container">
+            <div class="sec-head" style="display:flex; justify-content:space-between; align-items:flex-end;">
+                <div>
+                    <span class="sec-sub">PORTFOLIO</span>
+                    <h2 class="sec-title">제작 사례</h2>
+                </div>
+                <a href="#" style="border-bottom: 1px solid #fff;">View All Projects →</a>
+            </div>
+            <div class="pf-grid">
+                <div class="pf-item">
+                    <div class="pf-thumb">
+                        <img src="https://images.unsplash.com/photo-1481487484168-9b995ecc168d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="PF1">
+                    </div>
+                    <div class="pf-info">
+                        <h3>Mono Architecture</h3>
+                        <span>Corporate Website</span>
+                    </div>
+                </div>
+                <div class="pf-item">
+                    <div class="pf-thumb">
+                        <img src="https://images.unsplash.com/photo-1522542550221-31fd19575a2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="PF2">
+                    </div>
+                    <div class="pf-info">
+                        <h3>Creative Studio</h3>
+                        <span>Agency Portfolio</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="sec-head" style="text-align: center;">
+                <span class="sec-sub">WORK PROCESS</span>
+                <h2 class="sec-title">쉽고 빠른 제작 과정</h2>
+            </div>
+            <div class="process-grid">
+                <div class="step-item">
+                    <div class="step-num">1</div>
+                    <h3>문의하기</h3>
+                    <p style="margin-top:10px; color:#888;">원하시는 템플릿과<br>내용을 전달해주세요.</p>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">2</div>
+                    <h3>결제 및 자료전달</h3>
+                    <p style="margin-top:10px; color:#888;">계약 진행 후<br>필요한 자료를 받습니다.</p>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">3</div>
+                    <h3>제작 진행</h3>
+                    <p style="margin-top:10px; color:#888;">전문 디자이너가<br>사이트를 세팅합니다.</p>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">4</div>
+                    <h3>최종 오픈</h3>
+                    <p style="margin-top:10px; color:#888;">검수 후<br>사이트를 오픈합니다.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="review">
+        <div class="container">
+            <div class="sec-head">
+                <span class="sec-sub">TESTIMONIALS</span>
+                <h2 class="sec-title">고객 리얼 후기</h2>
+                <p class="sec-desc">실제 서비스를 이용하신 고객님들의 생생한 후기입니다.</p>
+            </div>
+            <div class="review-grid">
+                <div class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="review-text">"타 업체 견적의 10분의 1 가격이라 반신반의했는데, 퀄리티는 오히려 더 좋았습니다. 특히 모바일에서 너무 예쁘게 보여서 만족스러워요."</p>
+                    <div class="reviewer">
+                        <div class="reviewer-img">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="User">
+                        </div>
+                        <div class="reviewer-info">
+                            <strong>김민준 대표님</strong>
+                            <span>스타트업 CEO</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="review-text">"복잡한 과정 없이 알아서 척척 만들어주시니 너무 편했습니다. 수정 요청도 바로바로 반영해주시고 친절하셨습니다. 강력 추천합니다!"</p>
+                    <div class="reviewer">
+                        <div class="reviewer-img">
+                            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="User">
+                        </div>
+                        <div class="reviewer-info">
+                            <strong>이서연 원장님</strong>
+                            <span>뷰티샵 운영</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="review-text">"홈페이지 하나 바꿨을 뿐인데 문의량이 확실히 늘었습니다. 디자인이 깔끔해서 고객들에게 신뢰감을 주는 것 같아요."</p>
+                    <div class="reviewer">
+                        <div class="reviewer-img">
+                            <img src="https://randomuser.me/api/portraits/men/85.jpg" alt="User">
+                        </div>
+                        <div class="reviewer-info">
+                            <strong>박준호 님</strong>
+                            <span>프리랜서 포토그래퍼</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="faq">
+        <div class="container" style="max-width: 800px;">
+            <div class="sec-head" style="text-align: center;">
+                <span class="sec-sub">FAQ</span>
+                <h2 class="sec-title">자주 묻는 질문</h2>
+            </div>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-q">
+                        제작 기간은 얼마나 걸리나요?
+                        <i class="ri-add-line faq-icon"></i>
+                    </div>
+                    <div class="faq-a">
+                        자료 전달 완료일로부터 평균 3~5일 영업일 이내에 초기 세팅이 완료됩니다. 수정 사항에 따라 기간은 조금 달라질 수 있습니다.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q">
+                        추후에 직접 수정이 가능한가요?
+                        <i class="ri-add-line faq-icon"></i>
+                    </div>
+                    <div class="faq-a">
+                        네, 가능합니다. 코딩을 몰라도 텍스트나 이미지를 쉽게 수정할 수 있는 관리자 모드를 제공해드립니다.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q">
+                        유지보수 비용이 별도로 있나요?
+                        <i class="ri-add-line faq-icon"></i>
+                    </div>
+                    <div class="faq-a">
+                        기본적인 호스팅 비용 외에 별도의 월 유지보수 비용은 없습니다. 단, 디자인 대폭 수정 요청 시에는 비용이 발생할 수 있습니다.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="footer-cta" id="contact">
+        <div class="container">
+            <h2>준비 되셨나요?</h2>
+            <p style="color:#888; margin-bottom: 40px; font-size: 1.2rem;">성공적인 비즈니스를 위한 첫 걸음, 지금 바로 시작하세요.</p>
+            <a href="#" class="btn-head" style="background: #fff; color:#000; padding: 20px 60px; font-size: 1.2rem; border:none;">무료 견적 받기</a>
+        </div>
+    </div>
+
+    <footer>
+        <div class="f-info">
+            <h3 style="color:#fff; font-size:1.5rem; margin-bottom:15px;">WEBUILDER</h3>
+            <p>상호: 위빌더 | 대표: 홍길동 | 사업자등록번호: 123-45-67890</p>
+            <p>주소: 서울특별시 강남구 테헤란로 123 | 이메일: help@webuilder.com</p>
+        </div>
+        <div class="f-copy" style="align-self: flex-end;">
+            © 2025 WEBUILDER. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+        document.querySelectorAll('.faq-q').forEach(item => {
+            item.addEventListener('click', () => {
+                const parent = item.parentElement;
+                parent.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>
