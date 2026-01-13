@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Incheon Men's Eyebrow & SMP Studio - Golden Wave</title>
+    
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Incheon Men's Eyebrow & SMP Studio">
+    <meta property="og:description" content="Natural look for Men. Private Studio & Group Outcall Service available.">
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif; line-height: 1.6; color: #333; }
+        
+        /* Hero Section */
+        .hero {
+            height: 70vh; min-height: 500px;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect fill="%23232323" width="1200" height="800"/><g opacity="0.3"><circle cx="200" cy="150" r="80" fill="%23444"/><circle cx="900" cy="400" r="120" fill="%23444"/><circle cx="600" cy="600" r="100" fill="%23444"/></g></svg>');
+            background-size: cover; background-position: center;
+            display: flex; align-items: center; justify-content: center; text-align: center; color: white; position: relative;
+        }
+        .hero-content { max-width: 900px; padding: 20px; animation: fadeInUp 1s ease-out; }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        .hero h1 { font-size: 3rem; font-weight: 700; margin-bottom: 20px; line-height: 1.3; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
+        .hero p { font-size: 1.3rem; margin-bottom: 40px; opacity: 0.95; }
+        .cta-button { display: inline-block; padding: 18px 45px; background: linear-gradient(135deg, #c9a961 0%, #b8954a 100%); color: white; text-decoration: none; font-size: 1.2rem; font-weight: 600; border-radius: 50px; transition: all 0.3s; box-shadow: 0 4px 15px rgba(201, 169, 97, 0.4); }
+        .cta-button:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(201, 169, 97, 0.6); }
+        
+        /* Shared Sections */
+        .section-std { padding: 60px 20px; }
+        .bg-dark { background: #1a1a1a; color: white; }
+        .bg-light { background: #f8f8f8; }
+        .bg-white { background: white; }
+        
+        h2.sec-title { text-align: center; font-size: 2.5rem; margin-bottom: 40px; color: #2d2d2d; }
+        .bg-dark h2.sec-title { color: #c9a961; }
+        
+        /* About & Services Styles (Simplified from original) */
+        .service-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .service-card { background: white; padding: 30px; border-radius: 15px; border-top: 5px solid #c9a961; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        .service-card h3 { font-size: 1.5rem; margin-bottom: 15px; color: #2d2d2d; }
+        
+        /* Outcall Section (New) */
+        .outcall { background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%); color: white; padding: 60px 20px; text-align: center; }
+        .outcall-box { max-width: 800px; margin: 0 auto; border: 2px dashed #c9a961; padding: 40px; border-radius: 20px; }
+        .outcall h2 { color: #c9a961; margin-bottom: 20px; }
+        
+        /* Contact & Footer */
+        .contact-info { max-width: 800px; margin: 0 auto; background: white; padding: 40px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
+        footer { background: #1a1a1a; color: #888; padding: 40px 20px; text-align: center; }
+        
+        /* Floating Buttons */
+        .floating-buttons { position: fixed; bottom: 30px; right: 30px; display: flex; gap: 15px; z-index: 1000; }
+        .float-btn { width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 1.8rem; box-shadow: 0 4px 15px rgba(0,0,0,0.3); transition: all 0.3s; }
+        .kakao-btn { background: #FEE500; } .phone-btn { background: #34c759; color: white; }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Incheon Men's Premier<br>Eyebrow & SMP Studio</h1>
+            <p>Perfectly natural look tailored for men.<br>Private service by a professional male director.</p>
+            <a href="tel:010-8187-2376" class="cta-button">Free Consultation</a>
+        </div>
+    </section>
+
+    <section class="section-std bg-dark">
+        <h2 class="sec-title">Why Choose Golden Wave?</h2>
+        <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+            <p style="font-size: 1.2rem; margin-bottom: 20px;">
+                Are you looking for a clean, safe, and masculine style?<br>
+                We specialize in <strong>Men's Eyebrows</strong> and <strong>Scalp Micropigmentation (SMP)</strong>.
+            </p>
+            <ul style="list-style: none; font-size: 1.1rem; line-height: 2;">
+                <li>✅ <strong>Natural Look:</strong> Not too dark, not too thick. Just right for men.</li>
+                <li>✅ <strong>Fair Price:</strong> Same price for everyone. No hidden fees.</li>
+                <li>✅ <strong>Private:</strong> 100% Reservation system. 1:1 Service.</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="section-std bg-light">
+        <h2 class="sec-title">Our Services</h2>
+        <div class="service-grid">
+            <div class="service-card">
+                <h3>✏️ Men's Eyebrow</h3>
+                <p>We fill in the empty spots naturally. It changes your impression to be clean and sharp immediately.</p>
+                <p style="margin-top: 10px; color: #666; font-size: 0.9rem;">* Suitable for scars or thin eyebrows.</p>
+            </div>
+            <div class="service-card">
+                <h3>💈 SMP (Scalp)</h3>
+                <p>Hairline correction and crown density reinforcement. We cover empty scalp areas naturally like real hair follicles.</p>
+            </div>
+            <div class="service-card">
+                <h3>🩹 Scar Cover</h3>
+                <p>Do you have scars on your eyebrows or head? We can cover them naturally with our specialized technique.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="outcall">
+        <div class="outcall-box">
+            <h2>🚐 Special: We Come to You!</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 20px;">
+                Are you living in a dormitory or far from Incheon?<br>
+                <strong>If 3 or more people book together, we provide on-site service!</strong>
+            </p>
+            <p style="opacity: 0.8; font-size: 0.95rem;">
+                * Available anywhere within South Korea.<br>
+                * Ideal for factory coworkers, friends, or community groups.<br>
+                * Clean & Sterile equipment is brought to your location.
+            </p>
+            <a href="tel:010-8187-2376" class="cta-button" style="margin-top: 20px; font-size: 1rem;">Ask for Group Service</a>
+        </div>
+    </section>
+
+    <section class="section-std bg-white">
+        <h2 class="sec-title">Portfolio & Pricing</h2>
+        <div style="text-align: center; max-width: 800px; margin: 0 auto;">
+            <p style="margin-bottom: 30px;">
+                We have performed numerous procedures for both Korean and International customers.<br>
+                We promise a design that suits your face shape perfectly.
+            </p>
+            <div style="background: #f8f8f8; padding: 20px; border-radius: 10px; text-align: left;">
+                <h4 style="color: #c9a961; margin-bottom: 10px;">Transparent Pricing Policy</h4>
+                <p>Please send us a photo of your eyebrows or scalp via text/KakaoTalk.<br>
+                We will give you an exact quote immediately.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-std bg-light">
+        <h2 class="sec-title">Contact Us</h2>
+        <div class="contact-info">
+            <div style="margin-bottom: 20px;">
+                <strong>📍 Address:</strong><br>
+                Room 302, Dream Eisen 1-dong, 412 Majang-ro, Bupyeong-gu, Incheon<br>
+                (인천광역시 부평구 마장로 412, 드림 아이젠 1동 302호)
+            </div>
+            <div style="margin-bottom: 20px;">
+                <strong>📞 Phone / SMS:</strong><br>
+                <a href="tel:010-8187-2376" style="color: #c9a961; font-weight: bold; font-size: 1.2rem;">010-8187-2376</a>
+            </div>
+            <p style="color: #666; font-size: 0.9rem;">
+                * Since we work alone, we may not answer calls during procedures.<br>
+                * Please leave a text message: <strong>"Name / Nationality / Service needed"</strong>
+            </p>
+            
+            <div style="margin-top: 20px; height: 300px; background: #eee; border-radius: 10px; overflow: hidden;">
+                <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=6xcx2vmmzl"></script>
+                <div id="map" style="width:100%;height:100%;"></div>
+                <script>
+                    var map = new naver.maps.Map('map', {
+                        center: new naver.maps.LatLng(37.5149363, 126.7043162),
+                        zoom: 16
+                    });
+                    var marker = new naver.maps.Marker({
+                        position: new naver.maps.LatLng(37.5149363, 126.7043162),
+                        map: map
+                    });
+                </script>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <h3>Golden Wave Studio</h3>
+        <p>Representative: Lee Dong-gil | Business License: 326-58-00636</p>
+        <p><a href="index.html" style="color: #999;">Back to Korean Main Page</a></p>
+    </footer>
+
+    <div class="floating-buttons">
+        <a href="https://pf.kakao.com/_lsLgn" target="_blank" class="float-btn kakao-btn">💬</a>
+        <a href="tel:010-8187-2376" class="float-btn phone-btn">📞</a>
+    </div>
+
+</body>
+</html>
