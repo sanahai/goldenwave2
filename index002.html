@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WEBUILDER - 1/10 가격의 혁신</title>
+    
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css" />
+    
+    <style>
+        /* [1. 기본 설정 : 십분의일 스타일의 핵심은 '블랙 & 볼드' 입니다] */
+        :root {
+            --bg-color: #000000;       /* 완전한 블랙 */
+            --text-color: #ffffff;     /* 완전한 화이트 */
+            --point-color: #ff3e00;    /* 강렬한 오렌지 (브랜드 포인트) */
+            --gray-text: #666666;      /* 보조 텍스트 */
+            --border: #333333;         /* 어두운 테두리 */
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Pretendard', sans-serif;
+            word-break: keep-all;
+            overflow-x: hidden; /* 가로 스크롤 방지 */
+        }
+
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+        img { width: 100%; display: block; }
+
+        /* [2. 헤더 : 상단 고정, 투명도 없음, 심플함] */
+        header {
+            position: fixed; top: 0; left: 0; width: 100%;
+            height: 80px;
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 0 40px;
+            background: rgba(0,0,0,0.8); /* 살짝 비침 */
+            backdrop-filter: blur(10px);
+            z-index: 9999;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logo { font-size: 1.5rem; font-weight: 900; letter-spacing: -1px; }
+        .nav-pc { display: flex; gap: 50px; font-size: 1rem; font-weight: 600; }
+        .nav-pc a:hover { color: var(--point-color); transition: 0.3s; }
+        
+        /* 모바일 메뉴 버튼 (PC에선 숨김) */
+        .menu-btn { display: none; font-size: 1.5rem; cursor: pointer; }
+
+        /* [3. 히어로 섹션 : 화면을 가득 채우는 거대한 텍스트] */
+        .hero {
+            height: 100vh;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            text-align: center;
+            padding-top: 80px;
+            position: relative;
+        }
+
+        /* 벤치마킹 포인트: 아주 큰 폰트 사이즈와 자간 */
+        .hero h1 {
+            font-size: 6vw; /* 화면 너비에 비례해 커짐 */
+            font-weight: 900;
+            line-height: 1.1;
+            letter-spacing: -2px;
+            margin-bottom: 30px;
+        }
+        
+        .hero h1 span { color: var(--point-color); } /* 포인트 컬러 */
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--gray-text);
+            margin-bottom: 50px;
+            max-width: 600px;
+            line-height: 1.6;
+        }
+
+        .hero-btn {
+            padding: 20px 50px;
+            border: 1px solid #fff;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            transition: 0.3s;
+        }
+        .hero-btn:hover {
+            background: var(--point-color);
+            border-color: var(--point-color);
+            color: #fff;
+        }
+
+        /* [4. 마키(Marquee) : 옆으로 흐르는 텍스트 띠] */
+        .marquee-container {
+            width: 100%;
+            padding: 30px 0;
+            background: var(--point-color); /* 주황색 배경 */
+            color: #000; /* 검은 글씨 */
+            overflow: hidden;
+            white-space: nowrap;
+            /* 벤치마킹: 살짝 기울임 효과 */
+            transform: rotate(-2deg) scale(1.05);
+            margin: 50px 0;
+        }
+
+        .marquee-text {
+            display: inline-block;
+            font-size: 2rem;
+            font-weight: 900;
+            font-style: italic;
+            animation: scroll 20s linear infinite;
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* [5. 섹션 공통 레이아웃] */
+        .section { padding: 150px 40px; border-bottom: 1px solid var(--border); }
+        .container { max-width: 1400px; margin: 0 auto; }
+        
+        .sec-title {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 80px;
+        }
+        .sec-title span { display: block; font-size: 1rem; color: var(--point-color); margin-bottom: 10px; letter-spacing: 2px; }
+
+        /* [6. 특징 (Why Us) : 3단 그리드] */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px; /* 벤치마킹: 간격을 좁게 해서 꽉 찬 느낌 */
+        }
+
+        .card {
+            background: #111;
+            padding: 50px 30px;
+            border: 1px solid #222;
+            transition: 0.4s;
+        }
+        .card:hover { border-color: var(--point-color); background: #161616; }
+
+        .card-num { font-size: 4rem; font-weight: 900; color: #333; margin-bottom: 20px; display: block; }
+        .card:hover .card-num { color: var(--point-color); }
+        
+        .card h3 { font-size: 1.5rem; margin-bottom: 15px; }
+        .card p { color: #888; line-height: 1.6; }
+
+        /* [7. 포트폴리오 : 2단 대형 이미지 그리드] */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 60px;
+        }
+
+        .pf-item { cursor: pointer; group: cursor-pointer; }
+        .pf-thumb {
+            width: 100%;
+            height: 500px;
+            background: #222;
+            margin-bottom: 25px;
+            overflow: hidden;
+            position: relative;
+        }
+        .pf-thumb img {
+            width: 100%; height: 100%; object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+            filter: grayscale(100%); /* 흑백 효과 */
+        }
+        .pf-item:hover .pf-thumb img { 
+            transform: scale(1.1); 
+            filter: grayscale(0%); /* 호버시 컬러 */
+        }
+
+        .pf-info h3 { font-size: 2rem; font-weight: 700; margin-bottom: 5px; }
+        .pf-info p { color: var(--point-color); font-weight: 600; letter-spacing: 1px; }
+
+        /* [8. 가격표 / CTA] */
+        .cta-box {
+            text-align: center;
+            padding: 100px 0;
+        }
+        .price {
+            font-size: 5rem;
+            font-weight: 900;
+            color: #fff;
+            margin: 30px 0;
+            display: block;
+        }
+        .price span { font-size: 1.5rem; color: #666; font-weight: 400; margin-right: 10px; text-decoration: line-through; }
+        
+        /* [9. 푸터] */
+        footer {
+            padding: 80px 40px;
+            border-top: 1px solid var(--border);
+            font-size: 0.9rem;
+            color: #555;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        /* [모바일 대응] */
+        @media (max-width: 1024px) {
+            .hero h1 { font-size: 10vw; } /* 모바일에서 글자 더 크게 */
+            .grid-3, .portfolio-grid { grid-template-columns: 1fr; } /* 1단으로 변경 */
+            .nav-pc { display: none; } /* 메뉴 숨김 */
+            .menu-btn { display: block; color: #fff; }
+            header { padding: 0 20px; }
+            .section { padding: 100px 20px; }
+            .pf-thumb { height: 300px; }
+            footer { flex-direction: column; gap: 30px; }
+            .marquee-container { transform: rotate(0deg); } /* 모바일에선 기울기 제거 */
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">WE<span>BUILDER</span></div>
+        <nav class="nav-pc">
+            <a href="#">ABOUT</a>
+            <a href="#">SERVICE</a>
+            <a href="#">PORTFOLIO</a>
+            <a href="#">CONTACT</a>
+        </nav>
+        <div class="menu-btn">☰</div>
+    </header>
+
+    <section class="hero">
+        <p style="color: var(--point-color); font-weight: 700; margin-bottom: 20px; letter-spacing: 3px;">WEB AGENCY TEMPLATE</p>
+        <h1>
+            PREMIUM<br>
+            WEB <span>BUILDER</span>
+        </h1>
+        <p>
+            300만원대 홈페이지 퀄리티를 1/10 가격으로 제공합니다.<br>
+            거품을 뺀 합리적인 가격으로 당신의 비즈니스를 시작하세요.
+        </p>
+        <a href="#" class="hero-btn">제작 문의하기</a>
+    </section>
+
+    <div class="marquee-container">
+        <div class="marquee-text">
+            WEBUILDER STUDIO • HIGH QUALITY TEMPLATE • RESPONSIVE WEB DESIGN • 1/10 PRICE • PREMIUM QUALITY • WEBUILDER STUDIO • HIGH QUALITY TEMPLATE •
+        </div>
+    </div>
+
+    <section class="section">
+        <div class="container">
+            <h2 class="sec-title"><span>WHAT WE DO</span>우리가 특별한 이유</h2>
+            <div class="grid-3">
+                <div class="card">
+                    <span class="card-num">01</span>
+                    <h3>10x Quality</h3>
+                    <p>기존 저가형 템플릿과 비교를 거부합니다. 대기업 프로젝트에 사용되는 디자인 소스를 그대로 적용했습니다.</p>
+                </div>
+                <div class="card">
+                    <span class="card-num">02</span>
+                    <h3>Fast Process</h3>
+                    <p>복잡한 기획 단계 없이, 준비된 텍스트와 이미지만 보내주시면 3일 안에 셋팅이 완료됩니다.</p>
+                </div>
+                <div class="card">
+                    <span class="card-num">03</span>
+                    <h3>Responsive</h3>
+                    <p>PC, 태블릿, 모바일 등 모든 디바이스 환경에서 완벽하게 작동하는 반응형 웹을 기본 제공합니다.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <h2 class="sec-title"><span>PORTFOLIO</span>제작 사례</h2>
+            <div class="portfolio-grid">
+                <div class="pf-item">
+                    <div class="pf-thumb">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="포트폴리오1">
+                    </div>
+                    <div class="pf-info">
+                        <h3>Business Type A</h3>
+                        <p>CORPORATE / STARTUP</p>
+                    </div>
+                </div>
+                <div class="pf-item">
+                    <div class="pf-thumb">
+                        <img src="https://images.unsplash.com/photo-1556742049-0cfed4f7a07d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="포트폴리오2">
+                    </div>
+                    <div class="pf-info">
+                        <h3>Shop Type B</h3>
+                        <p>E-COMMERCE / BRAND</p>
+                    </div>
+                </div>
+                <div class="pf-item">
+                    <div class="pf-thumb">
+                        <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="포트폴리오3">
+                    </div>
+                    <div class="pf-info">
+                        <h3>Portfolio Type C</h3>
+                        <p>PERSONAL / AGENCY</p>
+                    </div>
+                </div>
+                <div class="pf-item">
+                    <div class="pf-thumb">
+                        <img src="https://images.unsplash.com/photo-1497215728101-856f4ea42174?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="포트폴리오4">
+                    </div>
+                    <div class="pf-info">
+                        <h3>Landing Type D</h3>
+                        <p>MARKETING / EVENT</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" style="border-bottom: none;">
+        <div class="container cta-box">
+            <h2 class="sec-title" style="margin-bottom: 20px;">지금 바로 시작하세요</h2>
+            <p style="color:#888; font-size: 1.2rem;">더 이상 홈페이지 제작에 비싼 비용을 들이지 마세요.</p>
+            
+            <div class="price">
+                <span>₩ 3,000,000</span> 330,000
+            </div>
+            
+            <a href="#" class="hero-btn" style="background: #fff; color:#000; border:none; padding: 25px 60px;">
+                무료 상담 신청하기
+            </a>
+        </div>
+    </section>
+
+    <footer>
+        <div>
+            <h3 style="color:#fff; font-size:1.5rem; margin-bottom:20px;">WEBUILDER</h3>
+            <p>
+                대표자 : 홍길동 | 사업자등록번호 : 000-00-00000<br>
+                주소 : 서울특별시 강남구 테헤란로 123<br>
+                이메일 : contact@webuilder.com
+            </p>
+        </div>
+        <div style="text-align: right;">
+            <p style="margin-bottom: 20px; color: #fff; font-weight: bold;">CS CENTER</p>
+            <p style="font-size: 1.5rem; color: #fff;">02-1234-5678</p>
+            <p>평일 10:00 - 18:00 (주말/공휴일 휴무)</p>
+        </div>
+    </footer>
+
+</body>
+</html>
