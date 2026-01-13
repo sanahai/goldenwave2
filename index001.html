@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MONO BUILDER - 프리미엄 웹빌더 솔루션</title>
+    
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css" />
+    
+    <style>
+        /* [공통 변수 및 초기화] */
+        :root {
+            --bg-color: #0a0a0a;
+            --text-color: #ffffff;
+            --accent-color: #ff4d00; /* 강렬한 오렌지 포인트 */
+            --gray-color: #333333;
+            --light-gray: #888888;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
+        
+        /* [레이아웃 유틸리티] */
+        .container { max-width: 1280px; margin: 0 auto; padding: 0 20px; }
+        .section { padding: 120px 0; border-bottom: 1px solid #222; }
+        .flex-between { display: flex; justify-content: space-between; align-items: center; }
+        
+        /* [1. Header] */
+        header {
+            position: fixed; top: 0; left: 0; width: 100%;
+            padding: 20px 0;
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        
+        .logo { font-size: 1.5rem; font-weight: 900; letter-spacing: -1px; }
+        .logo span { color: var(--accent-color); }
+        
+        .nav { display: flex; gap: 40px; font-weight: 500; font-size: 0.95rem; }
+        .nav a:hover { color: var(--accent-color); }
+        
+        .btn-contact {
+            padding: 10px 24px;
+            border: 1px solid #fff;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        .btn-contact:hover { background: var(--accent-color); border-color: var(--accent-color); color: #fff; }
+
+        /* [2. Hero Section] - 타이포그래피 강조 */
+        .hero {
+            height: 100vh;
+            display: flex; flex-direction: column; justify-content: center;
+            text-align: center;
+            padding-top: 60px;
+            background: radial-gradient(circle at center, #1a1a1a 0%, #0a0a0a 70%);
+        }
+        
+        .hero-badge {
+            display: inline-block;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 8px 16px;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .hero-title {
+            font-size: 5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 30px;
+            letter-spacing: -2px;
+        }
+        
+        .hero-title span { color: var(--light-gray); }
+        
+        .hero-desc {
+            font-size: 1.2rem;
+            color: var(--light-gray);
+            max-width: 600px;
+            margin: 0 auto 50px;
+        }
+        
+        .hero-btns { display: flex; gap: 20px; justify-content: center; }
+        
+        .btn-primary {
+            background: var(--accent-color);
+            color: #fff;
+            padding: 18px 40px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border-radius: 5px;
+        }
+        .btn-primary:hover { background: #ff6622; transform: translateY(-2px); }
+
+        /* [3. Marquee] - 흐르는 텍스트 효과 */
+        .marquee-wrap {
+            background: var(--accent-color);
+            color: #000;
+            padding: 20px 0;
+            overflow: hidden;
+            white-space: nowrap;
+            transform: rotate(-2deg) scale(1.05); /* 약간 기울여서 역동감 */
+            margin: 50px 0;
+        }
+        
+        .marquee-content {
+            display: inline-block;
+            font-size: 2rem;
+            font-weight: 900;
+            font-style: italic;
+            animation: marquee 20s linear infinite;
+        }
+        
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* [4. Features] - 3단 그리드 */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-top: 60px;
+        }
+        
+        .feature-item {
+            background: #111;
+            padding: 40px;
+            border: 1px solid #222;
+            border-radius: 10px;
+            transition: 0.3s;
+        }
+        .feature-item:hover { border-color: var(--accent-color); transform: translateY(-10px); }
+        
+        .f-num { font-size: 3rem; font-weight: 900; color: #222; margin-bottom: 20px; display: block; }
+        .feature-item:hover .f-num { color: var(--accent-color); }
+        
+        .f-title { font-size: 1.5rem; margin-bottom: 15px; font-weight: 700; }
+        .f-desc { color: var(--light-gray); line-height: 1.7; }
+
+        /* [5. Templates / Portfolio] */
+        .section-header { margin-bottom: 60px; }
+        .section-title { font-size: 3rem; font-weight: 800; margin-bottom: 15px; }
+        .section-subtitle { color: var(--light-gray); font-size: 1.1rem; }
+
+        .template-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+        
+        .template-card {
+            position: relative;
+            group: cursor-pointer;
+        }
+        
+        .t-img {
+            width: 100%;
+            height: 400px;
+            background: #222;
+            overflow: hidden;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .t-img img {
+            width: 100%; height: 100%; object-fit: cover;
+            transition: transform 0.5s ease;
+            opacity: 0.8;
+        }
+        
+        .template-card:hover .t-img img { transform: scale(1.05); opacity: 1; }
+        
+        .t-info { display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 1px solid #333; padding-bottom: 15px; }
+        .t-name { font-size: 1.5rem; font-weight: 700; }
+        .t-cat { color: var(--accent-color); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* [6. Pricing / CTA] */
+        .cta-section {
+            background: #fff;
+            color: #000;
+            text-align: center;
+            padding: 100px 20px;
+        }
+        
+        .cta-title { font-size: 3.5rem; font-weight: 900; margin-bottom: 30px; letter-spacing: -2px; }
+        .cta-desc { font-size: 1.2rem; margin-bottom: 40px; color: #444; }
+        .price-tag { font-size: 4rem; font-weight: 900; color: var(--accent-color); margin-bottom: 40px; display: block; }
+        
+        .btn-black {
+            background: #000; color: #fff;
+            padding: 20px 60px;
+            font-size: 1.2rem; font-weight: 700;
+            border-radius: 5px;
+            display: inline-block;
+        }
+        .btn-black:hover { background: #333; }
+
+        /* [Footer] */
+        footer { padding: 60px 0; font-size: 0.9rem; color: #666; border-top: 1px solid #222; }
+        .footer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; }
+        .f-logo { color: #fff; font-weight: 900; font-size: 1.2rem; margin-bottom: 20px; display: block; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-title { font-size: 3rem; }
+            .feature-grid, .template-grid, .footer-grid { grid-template-columns: 1fr; }
+            .nav { display: none; }
+            .marquee-wrap { transform: rotate(-2deg) scale(1); }
+            .cta-title { font-size: 2.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container flex-between">
+            <div class="logo">MONO<span>BUILDER</span></div>
+            <nav class="nav">
+                <a href="#about">서비스 소개</a>
+                <a href="#templates">템플릿 보기</a>
+                <a href="#process">제작 과정</a>
+                <a href="#faq">FAQ</a>
+            </nav>
+            <a href="#" class="btn-contact">문의하기</a>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <span class="hero-badge">Web Builder Solution</span>
+            <h1 class="hero-title">
+                300만원 홈페이지,<br>
+                <span>단 30만원에 소유하세요.</span>
+            </h1>
+            <p class="hero-desc">
+                거품을 뺀 가격, 압도적인 퀄리티. <br>
+                모노빌더는 웹사이트 제작의 새로운 기준을 제시합니다.
+            </p>
+            <div class="hero-btns">
+                <a href="#templates" class="btn-primary">템플릿 구경하기</a>
+            </div>
+        </div>
+    </section>
+
+    <div class="marquee-wrap">
+        <div class="marquee-content">
+            MONO BUILDER • PREMIUM TEMPLATE • NO CODE • HIGH QUALITY • RESPONSIVE DESIGN • FAST LOADING • SEO OPTIMIZED • MONO BUILDER • PREMIUM TEMPLATE •
+        </div>
+    </div>
+
+    <section class="section" id="about">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">WHY MONO?</h2>
+                <p class="section-subtitle">우리가 1/10 가격을 실현할 수 있는 이유입니다.</p>
+            </div>
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <span class="f-num">01</span>
+                    <h3 class="f-title">자체 개발 빌더</h3>
+                    <p class="f-desc">복잡한 코딩 과정 없이 자체 개발한 모듈형 빌더를 사용하여 제작 시간을 90% 단축했습니다.</p>
+                </div>
+                <div class="feature-item">
+                    <span class="f-num">02</span>
+                    <h3 class="f-title">검증된 디자인</h3>
+                    <p class="f-desc">수천 건의 데이터를 분석하여 가장 전환율이 높은 디자인 템플릿만을 엄선하여 제공합니다.</p>
+                </div>
+                <div class="feature-item">
+                    <span class="f-num">03</span>
+                    <h3 class="f-title">유지보수의 자유</h3>
+                    <p class="f-desc">제작 후에도 개발자 없이 텍스트와 이미지를 쉽게 수정할 수 있는 관리자 페이지를 제공합니다.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="templates">
+        <div class="container">
+            <div class="section-header flex-between">
+                <div>
+                    <h2 class="section-title">OUR TEMPLATES</h2>
+                    <p class="section-subtitle">비즈니스 목적에 맞는 최적의 디자인을 선택하세요.</p>
+                </div>
+                <a href="#" style="text-decoration: underline;">전체보기 →</a>
+            </div>
+            
+            <div class="template-grid">
+                <div class="template-card">
+                    <div class="t-img">
+                        <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Corporate">
+                    </div>
+                    <div class="t-info">
+                        <span class="t-name">Business Type A</span>
+                        <span class="t-cat">CORPORATE</span>
+                    </div>
+                </div>
+                <div class="template-card">
+                    <div class="t-img">
+                        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Agency">
+                    </div>
+                    <div class="t-info">
+                        <span class="t-name">Creative Studio</span>
+                        <span class="t-cat">AGENCY</span>
+                    </div>
+                </div>
+                <div class="template-card">
+                    <div class="t-img">
+                        <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Commerce">
+                    </div>
+                    <div class="t-info">
+                        <span class="t-name">Modern Shop</span>
+                        <span class="t-cat">E-COMMERCE</span>
+                    </div>
+                </div>
+                <div class="template-card">
+                    <div class="t-img">
+                        <img src="https://images.unsplash.com/photo-1555421689-491a97ff2040?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Portfolio">
+                    </div>
+                    <div class="t-info">
+                        <span class="t-name">Personal Portfolio</span>
+                        <span class="t-cat">PORTFOLIO</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="cta-section">
+        <div class="container">
+            <h2 class="cta-title">망설이는 순간,<br>경쟁사는 앞서갑니다.</h2>
+            <p class="cta-desc">
+                더 이상 홈페이지 제작에 수백만 원을 쓰지 마세요.<br>
+                오늘 신청하고 내일 바로 런칭하세요.
+            </p>
+            <span class="price-tag">₩ 330,000</span>
+            <a href="#" class="btn-black">지금 바로 제작 신청하기</a>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <span class="f-logo">MONO BUILDER</span>
+                    <p>
+                        프리미엄 웹사이트 템플릿 제작 에이전시<br>
+                        합리적인 가격으로 최고의 퀄리티를 제공합니다.
+                    </p>
+                </div>
+                <div style="text-align: right;">
+                    <p>
+                        <strong>CONTACT</strong><br>
+                        02-1234-5678<br>
+                        support@monobuilder.com<br>
+                        서울시 강남구 테헤란로 123
+                    </p>
+                </div>
+            </div>
+            <div style="margin-top: 40px; border-top: 1px solid #333; padding-top: 20px; text-align: center; color: #444;">
+                © 2025 MONO BUILDER. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
