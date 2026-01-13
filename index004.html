@@ -3,379 +3,333 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MUSE BUILDER - 뷰티 전문 웹빌더</title>
+    <title>MUSE BUILDER - Dynamic Beauty Web</title>
     
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css" />
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
 
     <style>
-        /* [1. Color System : 뷰티/보라 테마] */
+        /* [1. CSS Variables] */
         :root {
-            /* 배경: 깊은 보라색 (검정 아님) */
-            --bg-color: #120c1f; 
-            
-            /* 카드 배경: 조금 더 밝은 보라 */
-            --card-bg: #1c142e;
-            
-            /* 텍스트 */
+            --bg-color: #0d0015; /* 더 깊은 블랙 바이올렛 */
+            --card-bg: #1a0b2e;
             --text-main: #ffffff;
-            --text-sub: #bbaacc; /* 은은한 라벤더 그레이 */
-            
-            /* 포인트: 쨍한 라벤더 + 핑크 */
-            --accent: #bc6aff; 
-            --accent-grad: linear-gradient(90deg, #bc6aff 0%, #ff6bad 100%);
-            
-            /* 테두리: 투명도 있는 보라 */
-            --border: rgba(188, 106, 255, 0.2);
+            --text-sub: #d0c0e0;
+            --accent: #b04aff; 
+            --accent-light: #e0b0ff;
+            --gradient: linear-gradient(135deg, #b04aff 0%, #ff4aad 100%);
+            --border: rgba(176, 74, 255, 0.3);
         }
 
+        /* [2. Base Reset] */
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
         body {
             font-family: 'Pretendard', sans-serif;
             background-color: var(--bg-color);
             color: var(--text-main);
             line-height: 1.6;
-            overflow-x: hidden;
+            overflow-x: hidden; /* 가로 스크롤 방지 */
         }
-
         a { text-decoration: none; color: inherit; transition: 0.3s; }
         ul { list-style: none; }
-        img { width: 100%; display: block; }
+        img { width: 100%; height: 100%; object-fit: cover; display: block; }
         
-        /* 레이아웃 */
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-        .section { padding: 120px 0; border-bottom: 1px solid var(--border); }
-        
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 2; }
+        .section { padding: 140px 0; border-bottom: 1px solid var(--border); position: relative; }
+
         /* 타이포그래피 */
-        .sec-head { margin-bottom: 60px; }
-        .sec-sub { color: var(--accent); font-weight: 700; letter-spacing: 2px; margin-bottom: 15px; display: block; font-size: 0.9rem; text-transform: uppercase; }
-        .sec-title { font-size: 3rem; font-weight: 800; line-height: 1.2; }
-        .sec-desc { color: var(--text-sub); margin-top: 20px; font-size: 1.1rem; max-width: 600px; }
+        .sec-sub { 
+            color: var(--accent-light); font-weight: 700; letter-spacing: 3px; 
+            margin-bottom: 20px; display: inline-block; font-size: 0.9rem; text-transform: uppercase;
+            border: 1px solid var(--accent); padding: 5px 15px; border-radius: 30px;
+        }
+        .sec-title { font-size: 3.5rem; font-weight: 800; line-height: 1.1; margin-bottom: 20px; }
+        .sec-desc { color: var(--text-sub); font-size: 1.1rem; max-width: 600px; line-height: 1.7; }
 
-        /* [2. Header] */
+        /* [3. Header] */
         header {
-            position: fixed; top: 0; left: 0; width: 100%; height: 80px;
+            position: fixed; top: 0; left: 0; width: 100%; height: 90px;
             display: flex; align-items: center; justify-content: space-between;
-            padding: 0 40px; 
-            background: rgba(18, 12, 31, 0.85); /* 보라빛 투명 배경 */
-            backdrop-filter: blur(15px);
-            z-index: 1000; border-bottom: 1px solid var(--border);
+            padding: 0 50px; 
+            background: rgba(13, 0, 21, 0.7); backdrop-filter: blur(20px);
+            z-index: 1000; border-bottom: 1px solid rgba(255,255,255,0.05);
+            transition: 0.3s;
         }
-        .logo { font-size: 1.5rem; font-weight: 900; letter-spacing: 1px; }
+        .logo { font-size: 1.8rem; font-weight: 900; letter-spacing: -1px; font-style: italic; }
         .logo span { color: var(--accent); }
-        .nav { display: flex; gap: 40px; font-weight: 500; }
-        .nav a:hover { color: var(--accent); text-shadow: 0 0 10px rgba(188, 106, 255, 0.5); }
-        
-        .btn-head { 
-            background: transparent; border: 1px solid var(--accent); color: var(--accent);
-            padding: 10px 25px; border-radius: 50px; font-size: 0.9rem; font-weight: 600;
+        .nav { display: flex; gap: 40px; font-weight: 600; font-size: 1rem; }
+        .nav a:hover { color: var(--accent-light); }
+        .btn-consult {
+            background: var(--gradient); color: #fff; padding: 12px 30px; 
+            border-radius: 50px; font-weight: 700; border: none; cursor: pointer;
+            box-shadow: 0 5px 20px rgba(176, 74, 255, 0.4); transition: 0.3s;
         }
-        .btn-head:hover { 
-            background: var(--accent); color: #fff; box-shadow: 0 0 20px rgba(188, 106, 255, 0.4); 
-        }
+        .btn-consult:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(176, 74, 255, 0.6); }
 
-        /* [3. Hero Section] */
+        /* [4. Dynamic Hero Section] */
         .hero {
             height: 100vh; display: flex; align-items: center; justify-content: center;
-            text-align: center; position: relative; padding-top: 80px;
-            /* 배경에 은은한 오로라 효과 */
-            background: radial-gradient(circle at 50% 50%, rgba(188, 106, 255, 0.15) 0%, transparent 60%);
+            text-align: center; position: relative; overflow: hidden;
+            /* 배경 이미지 + 패럴랙스 효과 */
+            background: linear-gradient(rgba(13,0,21,0.6), rgba(13,0,21,0.8)), url('https://images.unsplash.com/photo-1492106087820-71f171ce5549?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed; /* 핵심: 배경 고정으로 역동감 부여 */
         }
-        .hero h1 { font-size: 5rem; font-weight: 800; line-height: 1.1; margin-bottom: 30px; letter-spacing: -2px; }
         
-        /* 뷰티 느낌을 위해 그라데이션 텍스트 적용 */
+        .hero-content { z-index: 3; position: relative; animation: fadeUp 1s ease-out; }
+        .hero h1 { 
+            font-size: 6rem; font-weight: 900; line-height: 1; margin-bottom: 30px; letter-spacing: -3px; 
+            text-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
         .hero h1 span { 
-            background: var(--accent-grad);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; 
         }
         
-        .hero p { color: var(--text-sub); font-size: 1.2rem; margin-bottom: 50px; }
+        /* 히어로 배경에 떠다니는 오브젝트 효과 */
+        .orb {
+            position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.6; z-index: 1;
+            animation: float 10s infinite alternate;
+        }
+        .orb-1 { width: 300px; height: 300px; background: #7000ff; top: 10%; left: 10%; }
+        .orb-2 { width: 400px; height: 400px; background: #ff0080; bottom: 10%; right: 10%; animation-delay: -5s; }
+
+        @keyframes float { 0% { transform: translate(0, 0); } 100% { transform: translate(30px, 50px); } }
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(50px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* [5. Image Marquee - 역동적인 이미지 흐름] */
+        .img-marquee-wrap {
+            padding: 80px 0; background: #000; overflow: hidden; border-bottom: 1px solid var(--border);
+            transform: rotate(-3deg) scale(1.1); /* 살짝 기울여서 역동감 */
+            margin: -50px 0 50px 0; z-index: 5; position: relative;
+            background: var(--gradient);
+        }
+        .img-marquee { display: flex; gap: 20px; animation: scrollLeft 20s linear infinite; }
+        .img-card { 
+            min-width: 300px; height: 200px; border-radius: 10px; overflow: hidden; 
+            border: 2px solid #fff; box-shadow: 5px 5px 15px rgba(0,0,0,0.3);
+        }
+        .img-card img { filter: grayscale(100%); transition: 0.3s; }
+        .img-card:hover img { filter: grayscale(0%); transform: scale(1.1); }
         
-        .scroll-down { 
-            position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); 
-            animation: bounce 2s infinite; color: var(--accent);
+        @keyframes scrollLeft { 0% { transform: translateX(0); } 100% { transform: translateX(-2000px); } }
+
+        /* [6. Intro Collage - 겹쳐진 이미지 레이아웃] */
+        .collage-grid {
+            display: grid; grid-template-columns: 1.2fr 1fr; gap: 80px; align-items: center;
         }
-        @keyframes bounce { 0%, 20%, 50%, 80%, 100% {transform: translateX(-50%) translateY(0);} 40% {transform: translateX(-50%) translateY(-10px);} 60% {transform: translateX(-50%) translateY(-5px);} }
+        .collage-imgs { position: relative; height: 600px; }
+        .c-img { position: absolute; border-radius: 15px; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.2); transition: 0.5s; }
+        .c-img:hover { z-index: 10; transform: scale(1.05); border-color: var(--accent); }
+        
+        /* 이미지 3장 배치 */
+        .c-img-1 { width: 60%; height: 60%; top: 0; left: 0; z-index: 1; }
+        .c-img-2 { width: 55%; height: 55%; bottom: 0; right: 0; z-index: 2; }
+        .c-img-3 { width: 40%; height: 40%; top: 30%; left: 30%; z-index: 3; border: 2px solid var(--accent); }
 
-        /* [4. Marquee - 그라데이션 적용] */
-        .marquee-wrap { 
-            background: var(--accent-grad); 
-            padding: 20px 0; overflow: hidden; white-space: nowrap; 
-            transform: rotate(-2deg); margin: 50px 0; 
-            box-shadow: 0 10px 30px rgba(188, 106, 255, 0.3);
+        /* [7. Portfolio - Hover Interaction] */
+        .work-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; }
+        .work-item { position: relative; overflow: hidden; border-radius: 20px; cursor: pointer; height: 500px; }
+        .work-bg { width: 100%; height: 100%; transition: transform 0.6s; }
+        .work-overlay {
+            position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+            display: flex; flex-direction: column; justify-content: flex-end; padding: 40px;
+            opacity: 0; transform: translateY(20px); transition: 0.4s;
         }
-        .marquee-txt { display: inline-block; font-size: 1.5rem; color: #fff; font-weight: 800; animation: marquee 20s linear infinite; }
-        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        .work-item:hover .work-bg { transform: scale(1.1); }
+        .work-item:hover .work-overlay { opacity: 1; transform: translateY(0); }
 
-        /* [5. Intro] */
-        .intro-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
-        .intro-img { height: 500px; background: #2a1f40; border-radius: 20px; overflow: hidden; border: 1px solid var(--border); }
-        .intro-img img { height: 100%; object-fit: cover; opacity: 0.8; mix-blend-mode: lighten; }
-
-        /* [6. Services] */
-        .svc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
-        .svc-card { 
-            background: var(--card-bg); padding: 40px; border-radius: 15px; 
-            border: 1px solid var(--border); transition: 0.3s; 
-        }
-        .svc-card:hover { transform: translateY(-10px); border-color: var(--accent); box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
-        .svc-icon { font-size: 2.5rem; color: var(--accent); margin-bottom: 20px; }
-        .svc-card h3 { font-size: 1.5rem; margin-bottom: 15px; }
-        .svc-card p { color: var(--text-sub); }
-
-        /* [7. Portfolio] */
-        .pf-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; }
-        .pf-item { position: relative; group: cursor-pointer; }
-        .pf-thumb { height: 400px; background: #2a1f40; border-radius: 15px; overflow: hidden; margin-bottom: 20px; border: 1px solid var(--border); }
-        .pf-thumb img { height: 100%; object-fit: cover; transition: 0.5s; opacity: 0.9; }
-        .pf-item:hover .pf-thumb img { transform: scale(1.1); opacity: 1; }
-        .pf-info h3 { font-size: 1.8rem; font-weight: 700; }
-        .pf-info span { color: var(--accent); font-weight: 600; }
-
-        /* [8. Review] */
+        /* [8. Review - Neon Cards] */
         .review-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
         .review-card {
-            background: var(--card-bg); padding: 40px; border-radius: 15px;
-            border: 1px solid var(--border); position: relative;
+            background: rgba(255,255,255,0.03); padding: 40px; border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.1); transition: 0.3s;
+            position: relative; overflow: hidden;
         }
-        .stars { color: var(--accent); margin-bottom: 15px; font-size: 1.2rem; }
-        .review-text { font-size: 1.05rem; line-height: 1.7; margin-bottom: 25px; color: #ddd; }
-        .reviewer { display: flex; align-items: center; gap: 15px; border-top: 1px solid var(--border); padding-top: 20px; }
-        .reviewer-img { width: 50px; height: 50px; border-radius: 50%; background: #444; overflow: hidden; }
+        /* 카드 호버시 네온 효과 */
+        .review-card:hover { 
+            background: rgba(176, 74, 255, 0.1); border-color: var(--accent); 
+            transform: translateY(-10px); box-shadow: 0 0 30px rgba(176, 74, 255, 0.2);
+        }
+        .review-card::before {
+            content: '"'; font-family: serif; font-size: 5rem; color: var(--accent); 
+            opacity: 0.3; position: absolute; top: 20px; left: 20px; line-height: 1;
+        }
         
-        /* [9. Process] */
-        .process-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; text-align: center; }
-        .step-item { position: relative; }
-        .step-num { 
-            width: 60px; height: 60px; 
-            background: transparent; border: 2px solid var(--accent); color: var(--accent); 
-            border-radius: 50%; display: flex; align-items: center; justify-content: center; 
-            font-size: 1.5rem; font-weight: 800; margin: 0 auto 20px;
-            box-shadow: 0 0 15px rgba(188, 106, 255, 0.2);
-        }
-        .step-item:not(:last-child)::after {
-            content: ''; position: absolute; top: 30px; right: -50%; width: 100%; height: 2px; 
-            background: linear-gradient(90deg, var(--accent), transparent); z-index: -1; opacity: 0.3;
-        }
+        /* [스크롤 애니메이션 클래스] */
+        .reveal { opacity: 0; transform: translateY(50px); transition: 1s ease; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
 
-        /* [10. FAQ] */
-        .faq-item { border-bottom: 1px solid var(--border); }
-        .faq-q { padding: 30px 0; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-size: 1.2rem; font-weight: 600; }
-        .faq-a { max-height: 0; overflow: hidden; transition: 0.3s; color: var(--text-sub); line-height: 1.6; }
-        .faq-item.active .faq-a { max-height: 200px; padding-bottom: 30px; }
-        .faq-icon { transition: 0.3s; color: var(--accent); }
-        .faq-item.active .faq-icon { transform: rotate(45deg); }
-
-        /* [11. Footer] */
-        .footer-cta { text-align: center; padding: 100px 0; background: linear-gradient(to bottom, var(--bg-color), #240046); }
-        footer { padding: 60px 40px; border-top: 1px solid var(--border); font-size: 0.9rem; color: var(--text-sub); display: flex; justify-content: space-between; }
-
-        /* Responsive */
+        /* Mobile */
         @media (max-width: 768px) {
-            .hero h1 { font-size: 3rem; }
-            .intro-grid, .svc-grid, .pf-grid, .review-grid, .process-grid { grid-template-columns: 1fr; }
-            .nav { display: none; }
-            .step-item:not(:last-child)::after { display: none; }
-            header { padding: 0 20px; }
-            .section { padding: 80px 20px; }
+            .hero h1 { font-size: 3.5rem; }
+            .collage-grid, .work-grid, .review-grid { grid-template-columns: 1fr; }
+            .collage-imgs { height: 400px; margin-bottom: 50px; }
+            .img-marquee-wrap { transform: rotate(0); margin: 0; }
+            .section { padding: 80px 0; }
         }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="logo">MUSE<span>BUILDER</span></div>
+        <div class="logo">MUSE <span>BUILDER</span></div>
         <nav class="nav">
-            <a href="#about">Brand Story</a>
-            <a href="#service">Services</a>
-            <a href="#portfolio">Works</a>
-            <a href="#review">Reviews</a>
-            <a href="#faq">FAQ</a>
+            <a href="#about">About</a>
+            <a href="#works">Works</a>
+            <a href="#process">Process</a>
+            <a href="#reviews">Reviews</a>
         </nav>
-        <a href="#contact" class="btn-head">Consulting</a>
+        <button class="btn-consult">Start Project</button>
     </header>
 
     <section class="hero">
-        <div class="container">
-            <span style="color:var(--accent); font-weight:700; letter-spacing:3px; margin-bottom:20px; display:block;">BEAUTY & AESTHETIC WEB</span>
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+
+        <div class="hero-content container">
+            <div style="font-size:1.2rem; letter-spacing:5px; margin-bottom:20px; color:#fff; font-weight:700;">PREMIUM WEB AGENCY</div>
             <h1>
-                BEAUTY<br>
-                DESIGN <span>STUDIO</span>
+                UNLEASH YOUR<br>
+                <span>BEAUTY BRAND</span>
             </h1>
-            <p>
-                당신의 뷰티 브랜드에 우아함과 트렌드를 입히세요.<br>
-                에스테틱, 뷰티샵, 코스메틱 전문 웹빌더 서비스.
+            <p style="font-size: 1.3rem; margin-bottom: 40px; opacity: 0.8;">
+                압도적인 비주얼, 독보적인 감각.<br>
+                뷰티 전문 웹빌더 서비스 뮤즈빌더입니다.
             </p>
-            <a href="#contact" class="btn-head" style="padding: 15px 40px; font-size: 1rem; background: var(--accent-grad); color:white; border:none;">무료 견적 받기</a>
-        </div>
-        <div class="scroll-down">
-            <i class="ri-arrow-down-line" style="font-size: 2rem;"></i>
+            <div style="display: flex; gap: 20px; justify-content: center;">
+                <button class="btn-consult" style="padding: 15px 50px; font-size: 1.1rem;">Portfolio View</button>
+                <button style="background:transparent; border:1px solid #fff; color:#fff; padding:15px 40px; border-radius:50px; font-weight:bold; cursor:pointer;">Contact Us</button>
+            </div>
         </div>
     </section>
 
-    <div class="marquee-wrap">
-        <div class="marquee-txt">
-            MUSE BUILDER • BEAUTY WEB DESIGN • AESTHETIC • COSMETIC • HAIR SALON • NAIL ART • MUSE BUILDER • ELEGANT DESIGN • TRENDY STYLE •
+    <div class="img-marquee-wrap">
+        <div class="img-marquee">
+            <div class="img-card"><img src="https://images.unsplash.com/photo-1522337660859-02fbefca4702?w=500&q=80"></div>
+            <div class="img-card"><img src="https://images.unsplash.com/photo-1596462502278-27bfdd403348?w=500&q=80"></div>
+            <div class="img-card"><img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=500&q=80"></div>
+            <div class="img-card"><img src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=500&q=80"></div>
+            <div class="img-card"><img src="https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=500&q=80"></div>
+            <div class="img-card"><img src="https://images.unsplash.com/photo-1522337660859-02fbefca4702?w=500&q=80"></div>
+            <div class="img-card"><img src="https://images.unsplash.com/photo-1596462502278-27bfdd403348?w=500&q=80"></div>
+            <div class="img-card"><img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=500&q=80"></div>
+            <div class="img-card"><img src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=500&q=80"></div>
+            <div class="img-card"><img src="https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=500&q=80"></div>
         </div>
     </div>
 
-    <section class="section" id="about">
-        <div class="container">
-            <div class="intro-grid">
-                <div>
-                    <span class="sec-sub">Who We Are</span>
-                    <h2 class="sec-title">뷰티를 가장 잘 아는<br>디자이너가 만듭니다.</h2>
-                    <p class="sec-desc">
-                        뷰티 웹사이트는 달라야 합니다. 단순히 정보를 나열하는 것이 아니라, 브랜드의 '결'과 '톤'을 시각적으로 보여줘야 합니다.<br>
-                        우리는 뷰티 업계 1위 템플릿 제작 노하우를 보유하고 있습니다.
-                    </p>
-                    <ul style="margin-top: 30px; color: var(--text-sub);">
-                        <li style="margin-bottom: 10px;">✓ 뷰티/미용 전문 포토그래퍼 이미지 제공</li>
-                        <li style="margin-bottom: 10px;">✓ 인스타그램 연동형 갤러리 디자인</li>
-                        <li>✓ 예약 시스템(네이버예약 등) 완벽 연동</li>
-                    </ul>
-                </div>
-                <div class="intro-img">
-                    <img src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Beauty Model">
-                </div>
+    <section class="section reveal" id="about">
+        <div class="container collage-grid">
+            <div class="collage-imgs">
+                <div class="c-img c-img-1"><img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=800&q=80"></div>
+                <div class="c-img c-img-2"><img src="https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?w=800&q=80"></div>
+                <div class="c-img c-img-3"><img src="https://images.unsplash.com/photo-1500917293891-ef795e70e1f6?w=800&q=80"></div>
             </div>
-        </div>
-    </section>
-
-    <section class="section" id="service">
-        <div class="container">
-            <div class="sec-head">
-                <span class="sec-sub">Our Services</span>
-                <h2 class="sec-title">뷰티 맞춤 솔루션</h2>
-            </div>
-            <div class="svc-grid">
-                <div class="svc-card">
-                    <i class="ri-brush-line svc-icon"></i>
-                    <h3>Brand Design</h3>
-                    <p>로고부터 웹사이트 컬러 팔레트까지, 당신의 샵에 맞는 무드(Mood)를 디자인해 드립니다.</p>
-                </div>
-                <div class="svc-card">
-                    <i class="ri-calendar-check-line svc-icon"></i>
-                    <h3>Booking System</h3>
-                    <p>고객이 편리하게 시술을 예약할 수 있도록 네이버 예약 및 카카오톡 채널을 연동해 드립니다.</p>
-                </div>
-                <div class="svc-card">
-                    <i class="ri-instagram-line svc-icon"></i>
-                    <h3>SNS Integration</h3>
-                    <p>인스타그램 피드가 홈페이지에 자동으로 업데이트되어 최신 시술 사진을 보여줄 수 있습니다.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="section" id="portfolio">
-        <div class="container">
-            <div class="sec-head" style="display:flex; justify-content:space-between; align-items:flex-end;">
-                <div>
-                    <span class="sec-sub">Portfolio</span>
-                    <h2 class="sec-title">제작 사례</h2>
-                </div>
-                <a href="#" style="border-bottom: 1px solid var(--accent); color:var(--accent);">View All Works →</a>
-            </div>
-            <div class="pf-grid">
-                <div class="pf-item">
-                    <div class="pf-thumb">
-                        <img src="https://images.unsplash.com/photo-1560750588-73207b1ef5b8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Cosmetic">
+            <div class="collage-text">
+                <span class="sec-sub">Why Muse Builder</span>
+                <h2 class="sec-title">We Create<br>Visual Impact.</h2>
+                <p class="sec-desc">
+                    밋밋한 웹사이트는 고객의 기억에 남지 않습니다.<br>
+                    우리는 강렬한 비주얼과 섬세한 인터랙션으로 브랜드의 가치를 높입니다.
+                    뷰티, 패션, 에스테틱 분야에 특화된 디자인 언어를 경험해보세요.
+                </p>
+                <div style="margin-top: 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                    <div>
+                        <h3 style="font-size: 2.5rem; color: var(--accent);">500+</h3>
+                        <p style="color: var(--text-sub);">Projects Done</p>
                     </div>
-                    <div class="pf-info">
-                        <h3>Lumiere Aesthetic</h3>
-                        <span>Premium Skincare Shop</span>
-                    </div>
-                </div>
-                <div class="pf-item">
-                    <div class="pf-thumb">
-                        <img src="https://images.unsplash.com/photo-1522337660859-02fbefca4702?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Makeup">
-                    </div>
-                    <div class="pf-info">
-                        <h3>Muse Makeup</h3>
-                        <span>Wedding & Daily Makeup</span>
+                    <div>
+                        <h3 style="font-size: 2.5rem; color: var(--accent);">98%</h3>
+                        <p style="color: var(--text-sub);">Satisfaction</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="section">
+    <section class="section reveal" id="works">
         <div class="container">
-            <div class="sec-head" style="text-align: center;">
-                <span class="sec-sub">Process</span>
-                <h2 class="sec-title">제작 프로세스</h2>
+            <div style="text-align: center; margin-bottom: 80px;">
+                <span class="sec-sub">Selected Works</span>
+                <h2 class="sec-title">Our Masterpieces</h2>
             </div>
-            <div class="process-grid">
-                <div class="step-item">
-                    <div class="step-num">1</div>
-                    <h3>상담 및 기획</h3>
-                    <p style="margin-top:10px; color:var(--text-sub);">브랜드 컨셉과<br>원하는 컬러를 정합니다.</p>
+            <div class="work-grid">
+                <div class="work-item">
+                    <img src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=1000&q=80" class="work-bg">
+                    <div class="work-overlay">
+                        <h3 style="font-size: 2rem; margin-bottom: 10px;">Lumiere Aesthetic</h3>
+                        <p style="color: var(--accent-light);">Web Design / Branding</p>
+                    </div>
                 </div>
-                <div class="step-item">
-                    <div class="step-num">2</div>
-                    <h3>디자인 시안</h3>
-                    <p style="margin-top:10px; color:var(--text-sub);">뮤즈빌더만의 감성으로<br>시안을 제작합니다.</p>
+                <div class="work-item">
+                    <img src="https://images.unsplash.com/photo-1596462502278-27bfdd403348?w=1000&q=80" class="work-bg">
+                    <div class="work-overlay">
+                        <h3 style="font-size: 2rem; margin-bottom: 10px;">The Salon</h3>
+                        <p style="color: var(--accent-light);">Booking System / Mobile App</p>
+                    </div>
                 </div>
-                <div class="step-item">
-                    <div class="step-num">3</div>
-                    <h3>개발 및 세팅</h3>
-                    <p style="margin-top:10px; color:var(--text-sub);">PC와 모바일에 맞춰<br>반응형으로 개발합니다.</p>
+                <div class="work-item">
+                    <img src="https://images.unsplash.com/photo-1552693673-1bf958298935?w=1000&q=80" class="work-bg">
+                    <div class="work-overlay">
+                        <h3 style="font-size: 2rem; margin-bottom: 10px;">Pure Cosmetic</h3>
+                        <p style="color: var(--accent-light);">E-Commerce / Shop</p>
+                    </div>
                 </div>
-                <div class="step-item">
-                    <div class="step-num">4</div>
-                    <h3>최종 오픈</h3>
-                    <p style="margin-top:10px; color:var(--text-sub);">도메인 연결 후<br>사이트를 오픈합니다.</p>
+                <div class="work-item">
+                    <img src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=1000&q=80" class="work-bg">
+                    <div class="work-overlay">
+                        <h3 style="font-size: 2rem; margin-bottom: 10px;">Vogue Academy</h3>
+                        <p style="color: var(--accent-light);">Educational Platform</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="section" id="review">
+    <section class="section reveal" id="reviews" style="background: linear-gradient(to bottom, var(--bg-color), #240b3b);">
         <div class="container">
-            <div class="sec-head">
+            <div style="margin-bottom: 60px;">
                 <span class="sec-sub">Testimonials</span>
-                <h2 class="sec-title">고객 후기</h2>
+                <h2 class="sec-title">Client Stories</h2>
             </div>
             <div class="review-grid">
                 <div class="review-card">
-                    <div class="stars">★★★★★</div>
-                    <p class="review-text">"원장님들이 왜 여기서 하는지 알겠어요. 보라색 톤으로 해달라고 했는데 너무 고급스럽게 잘 나왔습니다."</p>
-                    <div class="reviewer">
-                        <div class="reviewer-img">
-                            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="User">
-                        </div>
-                        <div class="reviewer-info">
-                            <strong>김지아 원장</strong>
-                            <span>청담 에스테틱</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="review-card">
-                    <div class="stars">★★★★★</div>
-                    <p class="review-text">"쇼핑몰 기능이 필요했는데 깔끔하게 붙여주셨어요. 디자인이 예뻐서 그런지 체류 시간이 늘었습니다."</p>
-                    <div class="reviewer">
-                        <div class="reviewer-img">
-                            <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="User">
-                        </div>
-                        <div class="reviewer-info">
-                            <strong>이수진 대표</strong>
-                            <span>오가닉 뷰티 브랜드</span>
+                    <div style="display:flex; gap:5px; color:#ffcc00; margin-bottom:20px;">★★★★★</div>
+                    <p style="font-size:1.1rem; line-height:1.6; margin-bottom:30px; color:#ddd; position:relative; z-index:2;">
+                        "사이트 오픈 후 예약 문의가 3배 늘었습니다. 특히 모바일에서 보여지는 화려한 비주얼 덕분에 고객님들이 좋아하세요."
+                    </p>
+                    <div style="display:flex; align-items:center; gap:15px;">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" style="width:50px; height:50px; border-radius:50%;">
+                        <div>
+                            <div style="font-weight:bold;">Sarah Kim</div>
+                            <div style="font-size:0.8rem; color:var(--accent);">Director, Pure Skin</div>
                         </div>
                     </div>
                 </div>
                 <div class="review-card">
-                    <div class="stars">★★★★★</div>
-                    <p class="review-text">"사진만 보냈는데 알아서 감성적으로 배치해주셨어요. 모바일에서 볼 때 더 예쁩니다."</p>
-                    <div class="reviewer">
-                        <div class="reviewer-img">
-                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="User">
+                    <div style="display:flex; gap:5px; color:#ffcc00; margin-bottom:20px;">★★★★★</div>
+                    <p style="font-size:1.1rem; line-height:1.6; margin-bottom:30px; color:#ddd; position:relative; z-index:2;">
+                        "보라색 테마가 너무 과하지 않을까 걱정했는데, 정말 고급스럽게 뽑아주셨습니다. 뮤즈빌더의 감각은 최고입니다."
+                    </p>
+                    <div style="display:flex; align-items:center; gap:15px;">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" style="width:50px; height:50px; border-radius:50%;">
+                        <div>
+                            <div style="font-weight:bold;">James Lee</div>
+                            <div style="font-size:0.8rem; color:var(--accent);">CEO, Men's Grooming</div>
                         </div>
-                        <div class="reviewer-info">
-                            <strong>박현우 실장</strong>
-                            <span>헤어 스튜디오</span>
+                    </div>
+                </div>
+                <div class="review-card">
+                    <div style="display:flex; gap:5px; color:#ffcc00; margin-bottom:20px;">★★★★★</div>
+                    <p style="font-size:1.1rem; line-height:1.6; margin-bottom:30px; color:#ddd; position:relative; z-index:2;">
+                        "기존 템플릿과는 차원이 다릅니다. 사진 몇 장만 보냈는데 브랜드 화보집 같은 사이트가 완성되었어요."
+                    </p>
+                    <div style="display:flex; align-items:center; gap:15px;">
+                        <img src="https://randomuser.me/api/portraits/women/68.jpg" style="width:50px; height:50px; border-radius:50%;">
+                        <div>
+                            <div style="font-weight:bold;">Emily Park</div>
+                            <div style="font-size:0.8rem; color:var(--accent);">Owner, Nail Studio</div>
                         </div>
                     </div>
                 </div>
@@ -383,61 +337,41 @@
         </div>
     </section>
 
-    <section class="section" id="faq">
-        <div class="container" style="max-width: 800px;">
-            <div class="sec-head" style="text-align: center;">
-                <span class="sec-sub">Q&A</span>
-                <h2 class="sec-title">자주 묻는 질문</h2>
-            </div>
-            <div class="faq-list">
-                <div class="faq-item">
-                    <div class="faq-q">
-                        디자인 수정은 몇 회 가능한가요?
-                        <i class="ri-add-line faq-icon"></i>
-                    </div>
-                    <div class="faq-a">
-                        기본적으로 시안 확정 전까지 2회 수정이 가능하며, 간단한 텍스트나 이미지 교체는 오픈 전까지 무제한으로 도와드립니다.
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-q">
-                        이미지나 로고가 없어도 되나요?
-                        <i class="ri-add-line faq-icon"></i>
-                    </div>
-                    <div class="faq-a">
-                        네, 가능합니다. 뷰티 업종에 맞는 고화질 유료 이미지를 저희가 보유하고 있어 대체하여 제작해 드립니다.
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <div class="footer-cta" id="contact">
+    <footer style="padding: 80px 0; border-top: 1px solid var(--border); text-align: center; background: #08000f;">
         <div class="container">
-            <h2>Start Your Brand</h2>
-            <p style="color:var(--text-sub); margin-bottom: 40px; font-size: 1.2rem;">아름다운 브랜드의 시작, 뮤즈빌더와 함께하세요.</p>
-            <a href="#" class="btn-head" style="background: var(--accent-grad); color:white; padding: 20px 60px; font-size: 1.2rem; border:none;">무료 상담 신청</a>
-        </div>
-    </div>
-
-    <footer>
-        <div class="f-info">
-            <h3 style="color:white; font-size:1.5rem; margin-bottom:15px;">MUSE BUILDER</h3>
-            <p>상호: 뮤즈빌더 | 대표: 김뮤즈 | 사업자등록번호: 000-00-00000</p>
-            <p>주소: 서울특별시 강남구 도산대로 123 | 이메일: contact@muse.com</p>
-        </div>
-        <div class="f-copy" style="align-self: flex-end;">
-            © 2026 MUSE BUILDER. All rights reserved.
+            <div class="logo" style="margin-bottom: 30px;">MUSE <span>BUILDER</span></div>
+            <p style="color: var(--text-sub); margin-bottom: 40px;">
+                We build digital experiences for beauty brands.<br>
+                Seoul, Korea based creative agency.
+            </p>
+            <div style="margin-bottom: 50px;">
+                <a href="#" class="btn-consult" style="padding: 15px 60px; font-size: 1.2rem;">Start Your Project</a>
+            </div>
+            <div style="font-size: 0.9rem; color: #555;">
+                © 2026 MUSE BUILDER. All rights reserved.
+            </div>
         </div>
     </footer>
 
     <script>
-        document.querySelectorAll('.faq-q').forEach(item => {
-            item.addEventListener('click', () => {
-                const parent = item.parentElement;
-                parent.classList.toggle('active');
+        // 스크롤 시 요소가 부드럽게 나타나는 효과
+        const revealElements = document.querySelectorAll('.reveal');
+
+        const revealOnScroll = () => {
+            const windowHeight = window.innerHeight;
+            const elementVisible = 150;
+
+            revealElements.forEach((reveal) => {
+                const elementTop = reveal.getBoundingClientRect().top;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveal.classList.add('active');
+                }
             });
-        });
+        };
+
+        window.addEventListener('scroll', revealOnScroll);
+        // 초기 로드시 한 번 실행
+        revealOnScroll();
     </script>
 </body>
 </html>
